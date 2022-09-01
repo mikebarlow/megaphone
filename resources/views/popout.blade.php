@@ -23,7 +23,7 @@
                          x-on:mouseenter="$wire.markAsRead('{{ $announcement->id }}')"
                         @endif
                 >
-                    <x-announcements::display :notification="$announcement"></x-announcements::display>
+                    <x-megaphone::display :notification="$announcement"></x-megaphone::display>
                 </div>
             @endforeach
 
@@ -38,7 +38,7 @@
                     x-on:mouseenter="$wire.markAsRead('{{ $announcement->id }}')"
                 @endif
             >
-                <x-announcements::display :notification="$announcement"></x-announcements::display>
+                <x-megaphone::display :notification="$announcement"></x-megaphone::display>
             </div>
         @empty
             <div class="flex items-center justiyf-between">
