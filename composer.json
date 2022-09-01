@@ -1,0 +1,29 @@
+{
+    "name": "mbarlow/megaphone",
+    "description": "UI and admin for Laravel Notifications.",
+    "keywords": ["Announcements", "Bell Icon", "Notifications", "Livewire", "Laravel"],
+    "homepage": "https://github.com/mikebarlow/megaphone",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mike Barlow",
+            "email": "mike@mikebarlow.co.uk",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "livewire/livewire": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MBarlow\\Megaphone\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MBarlow\\Megaphone\\MegaphoneServiceProvider"
+            ]
+        }
+    }
+}
