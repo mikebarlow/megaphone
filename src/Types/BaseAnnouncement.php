@@ -4,6 +4,7 @@ namespace MBarlow\Megaphone\Types;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Str;
 
 class BaseAnnouncement extends Notification
 {
@@ -30,5 +31,12 @@ class BaseAnnouncement extends Notification
             'link'     => $this->link,
             'linkText' => $this->linkText,
         ];
+    }
+
+    public static function name(): string
+    {
+        $elements = explode('\\', static::class);
+        $class = end($elements);
+        return implode(' ', Str::ucsplit($class));
     }
 }
