@@ -3,23 +3,24 @@
 namespace MBarlow\Megaphone\Livewire;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 use MBarlow\Megaphone\Types\General;
 
 class MegaphoneAdmin extends Component
 {
-    public string $title;
-    public string $body;
-    public string $link;
-    public string $linkText;
-    public array $types = [];
-    public array $recipients = [];
+    public string $type = '';
+    public string $title = '';
+    public string $body = '';
+    public string $link = '';
+    public string $linkText = 'Read More...';
+    public array $notifTypes = [];
 
     public array $users = [];
 
     public function mount(Request $request)
     {
-        $this->types = collect(
+        $this->notifTypes = collect(
             array_merge(
                 (array) config('megaphone.types', []),
                 array_keys((array) config('megaphone.customTypes', []))
@@ -36,5 +37,27 @@ class MegaphoneAdmin extends Component
     public function render()
     {
         return view('megaphone::admin.create-announcement');
+    }
+
+    public function send()
+    {
+        $this->validate();
+
+        $notification = new $this->type($this->title, $this->body, $this->link, $this->linkText);
+
+        dump($notification);
+
+    }
+
+    protected function rules()
+    {
+        return [
+            'type' => [
+                'required',
+                Rule::in(config('megaphone.types', [])),
+            ],
+            'title' => 'required',
+            'body'  => 'required',
+        ];
     }
 }
