@@ -15,7 +15,8 @@
         "livewire/livewire": "^2.0"
     },
     "require-dev": {
-        "laravel/pint": "^1.1"
+        "laravel/pint": "^1.1",
+        "squizlabs/php_codesniffer": "^3.7"
     },
     "autoload": {
         "psr-4": {
@@ -31,7 +32,7 @@
     },
     "scripts": {
         "test": [
-            "./vendor/bin/pest --test"
+            "./vendor/bin/phpcs --standard=PSR2 src"
         ]
     }
 }

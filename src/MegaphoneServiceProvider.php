@@ -21,7 +21,8 @@ class MegaphoneServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'megaphone');
         $this->mergeConfigFrom(
-            __DIR__.'/../config/megaphone.php', 'megaphone'
+            __DIR__.'/../config/megaphone.php',
+            'megaphone'
         );
 
         Blade::componentNamespace('MBarlow\\Megaphone\\Components', 'megaphone');
