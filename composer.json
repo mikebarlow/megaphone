@@ -25,5 +25,8 @@
                 "MBarlow\\Megaphone\\MegaphoneServiceProvider"
             ]
         }
+    },
+    "require-dev": {
+        "laravel/pint": "^1.1"
     }
 }
