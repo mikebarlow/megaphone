@@ -3,6 +3,7 @@
 namespace MBarlow\Megaphone\Livewire;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use MBarlow\Megaphone\Types\General;
@@ -45,8 +46,14 @@ class MegaphoneAdmin extends Component
 
         $notification = new $this->type($this->title, $this->body, $this->link, $this->linkText);
 
-        dump($notification);
+        $this->getUsers()->each(
+            function ($user) use ($notification) {
+                $user->notify($notification);
+            }
+        );
 
+        session()->flash('megaphone_success', __('Notifications sent successfully!'));
+        $this->resetExcept('notifTypes');
     }
 
     protected function rules()
@@ -59,5 +66,11 @@ class MegaphoneAdmin extends Component
             'title' => 'required',
             'body'  => 'required',
         ];
+    }
+
+    protected function getUsers(): Collection
+    {
+        $modelClass = config('megaphone.model');
+        return (new $modelClass)->get();
     }
 }
