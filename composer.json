@@ -14,6 +14,9 @@
     "require": {
         "livewire/livewire": "^2.0"
     },
+    "require-dev": {
+        "laravel/pint": "^1.1"
+    },
     "autoload": {
         "psr-4": {
             "MBarlow\\Megaphone\\": "src"
@@ -26,7 +29,9 @@
             ]
         }
     },
-    "require-dev": {
-        "laravel/pint": "^1.1"
+    "scripts": {
+        "test": [
+            "./vendor/bin/pest --test"
+        ]
     }
 }
