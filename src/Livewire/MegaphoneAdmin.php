@@ -6,15 +6,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
-use MBarlow\Megaphone\Types\General;
 
 class MegaphoneAdmin extends Component
 {
     public string $type = '';
+
     public string $title = '';
+
     public string $body = '';
+
     public string $link = '';
+
     public string $linkText = 'Read More...';
+
     public array $notifTypes = [];
 
     public array $users = [];
@@ -64,13 +68,14 @@ class MegaphoneAdmin extends Component
                 Rule::in(config('megaphone.types', [])),
             ],
             'title' => 'required',
-            'body'  => 'required',
+            'body' => 'required',
         ];
     }
 
     protected function getUsers(): Collection
     {
         $modelClass = config('megaphone.model');
+
         return (new $modelClass)->get();
     }
 }

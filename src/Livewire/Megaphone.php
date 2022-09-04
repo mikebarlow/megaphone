@@ -9,7 +9,9 @@ use Livewire\Component;
 class Megaphone extends Component
 {
     public $user;
+
     public $announcements;
+
     public $unread;
 
     public function mount(Request $request)

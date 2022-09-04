@@ -8,6 +8,7 @@ use Illuminate\Notifications\DatabaseNotification;
 class ClearOldNotifications extends Command
 {
     protected $signature = 'megaphone:clear-announcements';
+
     protected $description = 'Clear old read announcements';
 
     public function handle()

@@ -31,8 +31,8 @@ class Display extends Component
 
         $params = [
             'announcement' => $this->notification->data,
-            'read_at'      => $this->notification->read_at,
-            'created_at'   => $this->notification->created_at,
+            'read_at' => $this->notification->read_at,
+            'created_at' => $this->notification->created_at,
         ];
 
         $customTypes = config('megaphone.customTypes');
@@ -54,5 +54,4 @@ class Display extends Component
             $params
         );
     }
-
 }

@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use MBarlow\Megaphone\Console\ClearOldNotifications;
-use MBarlow\Megaphone\Livewire\MegaphoneAdmin;
 use MBarlow\Megaphone\Livewire\Megaphone;
+use MBarlow\Megaphone\Livewire\MegaphoneAdmin;
 
 class MegaphoneServiceProvider extends ServiceProvider
 {
@@ -19,7 +19,7 @@ class MegaphoneServiceProvider extends ServiceProvider
             ]);
         }
 
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'megaphone');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'megaphone');
         $this->mergeConfigFrom(
             __DIR__.'/../config/megaphone.php', 'megaphone'
         );
@@ -39,7 +39,7 @@ class MegaphoneServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../public' => public_path('vendor/megaphone'),
             __DIR__.'/../config/megaphone.php' => config_path('megaphone.php'),
-         //   __DIR__.'/../resources/views' => resource_path('views/vendor/megaphone'),
+            __DIR__.'/../resources/views' => resource_path('views/vendor/megaphone'),
         ], 'megaphone');
     }
 }

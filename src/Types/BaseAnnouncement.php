@@ -26,9 +26,9 @@ class BaseAnnouncement extends Notification
     public function toArray($notifiable)
     {
         return [
-            'title'    => $this->title,
-            'body'     => $this->body,
-            'link'     => $this->link,
+            'title' => $this->title,
+            'body' => $this->body,
+            'link' => $this->link,
             'linkText' => $this->linkText,
         ];
     }
@@ -37,6 +37,7 @@ class BaseAnnouncement extends Notification
     {
         $elements = explode('\\', static::class);
         $class = end($elements);
+
         return implode(' ', Str::ucsplit($class));
     }
 }
