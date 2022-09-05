@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mikebarlow/notif-tests.git"
+    "url": "git+https://github.com/mikebarlow/megaphone.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mikebarlow/notif-tests/issues"
+    "url": "https://github.com/mikebarlow/megaphones/issues"
   },
-  "homepage": "https://github.com/mikebarlow/notif-tests#readme",
+  "homepage": "https://github.com/mikebarlow/megaphone",
   "devDependencies": {
     "laravel-mix": "^6.0.49",
     "sass": "^1.53.0",

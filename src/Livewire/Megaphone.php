@@ -29,7 +29,7 @@ class Megaphone extends Component
 
     public function render()
     {
-        return view('megaphone::announcements');
+        return view('megaphone::megaphone');
     }
 
     public function markAsRead(DatabaseNotification $notification)

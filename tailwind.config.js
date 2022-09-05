@@ -4,5 +4,5 @@ module.exports = {
     "./resources/views/*.php",
     "./resources/views/types/*.php",
   ],
-  important: '.mb-announcements'
+  important: '.megaphone'
 }
