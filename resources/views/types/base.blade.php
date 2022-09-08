@@ -1,5 +1,5 @@
 <div tabindex="0" aria-label="group icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex flex-shrink-0 items-center justify-center">
-    {{ $icon ?? '' }}
+    {!! $icon ?? '' !!}
 </div>
 <div class="pl-3 w-full">
     <div class="items-center justify-between w-full pr-2">
