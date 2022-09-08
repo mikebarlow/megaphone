@@ -22,6 +22,12 @@ class Megaphone extends Component
 
     public function loadAnnouncements($user)
     {
+        $this->unread = $this->announcements = collect([]);
+
+        if ($user::class !== config('megaphone.model')) {
+            return;
+        }
+
         $announcements = $user->announcements()->get();
         $this->unread = $announcements->whereNull('read_at');
         $this->announcements = $announcements->whereNotNull('read_at');
