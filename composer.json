@@ -15,11 +15,18 @@
         "livewire/livewire": "^2.0"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "^3.7"
+        "squizlabs/php_codesniffer": "^3.7",
+        "pestphp/pest-plugin-livewire": "^1.0",
+        "orchestra/testbench": "^7.7"
     },
     "autoload": {
         "psr-4": {
             "MBarlow\\Megaphone\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MBarlow\\Megaphone\\Tests\\": "tests"
         }
     },
     "extra": {
@@ -33,5 +40,10 @@
         "test": [
             "./vendor/bin/phpcs --standard=PSR2 src"
         ]
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     }
 }
