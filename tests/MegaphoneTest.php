@@ -36,3 +36,45 @@ it('can render the megaphone component with notification count', function () {
             </span>
         </div>');
 });
+
+it('can load announcements', function () {
+    $this->actingAs(
+        $user = $this->createTestUser()
+    );
+
+    $this->createTestNotification(
+        $user,
+        \MBarlow\Megaphone\Types\General::class
+    );
+    $this->createTestNotification(
+        $user,
+        \MBarlow\Megaphone\Types\Important::class
+    );
+    $user->unreadNotifications->first()->markAsRead();
+
+    $this->livewire(Megaphone::class)
+        ->call('loadAnnouncements', $user)
+        ->assertSet('unread', $user->unreadNotifications()->get())
+        ->assertSet('announcements', $user->readNotifications);
+});
+
+it('can mark notification as read', function () {
+    $this->actingAs(
+        $user = $this->createTestUser()
+    );
+
+    $this->createTestNotification(
+        $user,
+        \MBarlow\Megaphone\Types\General::class
+    );
+    $this->createTestNotification(
+        $user,
+        \MBarlow\Megaphone\Types\Important::class
+    );
+    $notification = $user->unreadNotifications->first();
+
+    $this->livewire(Megaphone::class)
+        ->call('markAsRead', $notification)
+        ->assertSet('unread', $user->unreadNotifications()->get())
+        ->assertSet('announcements', $user->readNotifications);
+});
