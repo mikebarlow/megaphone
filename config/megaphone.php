@@ -26,6 +26,17 @@ return [
     ],
 
     /*
+     * Array of Notification types available within MegaphoneAdmin Component or
+     * leave as null to show all types / customTypes
+     *
+     * 'adminTypeList' => [
+     *     \MBarlow\Megaphone\Types\NewFeature::class,
+     *     \MBarlow\Megaphone\Types\Important::class,
+     * ],
+     */
+    'adminTypeList' => null,
+
+    /*
      * Clear Megaphone notifications older than....
      */
     'clearAfter' => '2 weeks',

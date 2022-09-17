@@ -25,18 +25,15 @@ class MegaphoneAdmin extends Component
 
     public function mount(Request $request)
     {
-        $this->notifTypes = collect(
-            array_merge(
-                (array) config('megaphone.types', []),
-                array_keys((array) config('megaphone.customTypes', []))
+        $this->notifTypes = collect(getMegaphoneAdminTypes())
+            ->mapWithKeys(
+                function ($class) {
+                    return [
+                        $class => $class::name(),
+                    ];
+                }
             )
-        )->mapWithKeys(
-            function ($class) {
-                return [
-                    $class => $class::name(),
-                ];
-            }
-        )->toArray();
+            ->toArray();
     }
 
     public function render()
@@ -65,7 +62,9 @@ class MegaphoneAdmin extends Component
         return [
             'type' => [
                 'required',
-                Rule::in(config('megaphone.types', [])),
+                Rule::in(
+                    getMegaphoneTypes()
+                ),
             ],
             'title' => 'required',
             'body' => 'required',
