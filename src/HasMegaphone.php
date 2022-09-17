@@ -11,10 +11,15 @@ trait HasMegaphone
         return $this->notifications()
             ->whereIn(
                 'type',
-                array_merge(
-                    (array) config('megaphone.types', []),
-                    array_keys((array) config('megaphone.customTypes', []))
-                )
+                $this->getMegaphoneTypes()
             );
+    }
+
+    public function getMegaphoneTypes(): array
+    {
+        return array_merge(
+            (array) config('megaphone.types', []),
+            array_keys((array) config('megaphone.customTypes', []))
+        );
     }
 }
