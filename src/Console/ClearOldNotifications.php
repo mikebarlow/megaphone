@@ -15,7 +15,7 @@ class ClearOldNotifications extends Command
     {
         now()->sub(config('megaphone.clearAfter'))->toDateTimeString();
 
-        DatabaseNotification::whereIn('type', config('megaphone.types', []))
+        DatabaseNotification::whereIn('type', getMegaphoneTypes())
             ->whereNotNull('read_at')
             ->where('created_at', '<', now()->sub(config('megaphone.clearAfter')))
             ->delete();
