@@ -2,7 +2,6 @@
 
 namespace MBarlow\Megaphone\Livewire;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -23,7 +22,7 @@ class MegaphoneAdmin extends Component
 
     public array $users = [];
 
-    public function mount(Request $request)
+    public function mount()
     {
         $this->notifTypes = collect(getMegaphoneAdminTypes())
             ->mapWithKeys(
