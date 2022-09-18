@@ -9,8 +9,6 @@
 
 Megaphone is a Laravel Livewire based component that uses the power of Laravels built in Notifications system to allow you to add "Bell Icon Notification System" to your app.
 
-Use the standard laravel `$user->notify()` method to send megaphone notifications to your users to keep them in the loop about changes to your app, maintenance, new features and more!
-
 Megaphone also ships with an Admin form component that allows you to send out a notification to all your users at once. Perfect for announcing new features or planned maintenance!
 
 ## Installation
