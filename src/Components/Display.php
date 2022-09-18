@@ -21,10 +21,7 @@ class Display extends Component
     {
         if (! in_array(
             $this->notification->type,
-            array_merge(
-                (array) config('megaphone.types', []),
-                array_keys((array) config('megaphone.customTypes', []))
-            )
+            getMegaphoneTypes()
         )) {
             return '';
         }

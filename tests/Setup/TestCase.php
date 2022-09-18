@@ -3,6 +3,7 @@
 namespace MBarlow\Megaphone\Tests\Setup;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\View;
 use Livewire\LivewireServiceProvider;
 use MBarlow\Megaphone\MegaphoneServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
@@ -11,6 +12,13 @@ use function Pest\Faker\faker;
 class TestCase extends BaseTestCase
 {
     use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        View::addNamespace('tests', __DIR__ . '/views');
+    }
 
     protected function createTestUser(): User
     {

@@ -14,6 +14,11 @@ class Megaphone extends Component
 
     public $unread;
 
+    public $rules = [
+        'unread' => 'required',
+        'announcements' => 'required',
+    ];
+
     public function mount(Request $request)
     {
         $this->user = $request->user();
