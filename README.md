@@ -13,6 +13,42 @@ Megaphone also ships with an Admin form component that allows you to send out a 
 
 ## Installation
 
-Simply require the package via composer into your Laravel API.
+Simply require the package via composer into your Laravel app.
 
     composer require mbarlow/megaphone
+
+If you aren't already using Laravel Livewire in your app, Megaphone should include the package via its dependency. Once composer has finished installing, make sure you run the [Livewire installation steps](https://laravel-livewire.com/docs/2.x/installation).
+
+Once Livewire has been installed, if you haven't already, make sure the [Laravel Database Notifications have been installed](https://laravel.com/docs/9.x/notifications#database-prerequisites).
+
+```bash
+php artisan notifications:table
+ 
+php artisan migrate 
+```
+
+This should create database table used to house your notifications. Next, make sure your User model (or relevant alternative model) has the notifable trait added as mentioned in the [Laravel Documentation](https://laravel.com/docs/9.x/notifications#using-the-notifiable-trait) and also add the `HasMegaphone` trait provided by Megaphone.
+
+```php
+<?php
+ 
+namespace App\Models;
+ 
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use MBarlow\Megaphone\HasMegaphone;
+ 
+class User extends Authenticatable
+{
+    use Notifiable;
+    use HasMegaphone
+}
+```
+
+Lastly, publish the Megaphone assets. This should publish the Config file as well as the templates and stylesheets.
+
+```bash
+php artisan vendor:publish --provider="MBarlow\Megaphone\MegaphoneServiceProvider"
+```
+
+If you are not using the default user model found at `App\Models\User`, you will need to amend the value of the user class, define in the megaphone.php config file. Simply change the value to the path of your User model. The config file should be fairly well labeled so the changes are obvious.
