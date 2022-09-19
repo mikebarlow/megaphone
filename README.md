@@ -52,3 +52,40 @@ php artisan vendor:publish --provider="MBarlow\Megaphone\MegaphoneServiceProvide
 ```
 
 If you are not using the default user model found at `App\Models\User`, you will need to amend the value of the user class, defined in the megaphone.php config file. Simply change the value to the path of your User model. The config file should be fairly well labeled so the changes are obvious.
+
+## Using Megaphone
+
+## Customising Megaphone
+
+## Testing
+
+If you wish to run the tests, clone out the repository
+
+    git clone git@github.com:mikebarlow/megaphone.git
+
+Change to the root of the repository and run composer install with the dev dependencies
+
+    cd megaphone
+    composer install
+
+A script is defined in the `composer.json` to run both the code sniffer and the unit tests
+
+    composer run test
+
+Or run them individually as required
+
+    ./vendor/bin/pest
+    
+    ./vendor/bin/phpcs --standard=PSR2 src
+
+## Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+
+## Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
