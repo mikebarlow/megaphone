@@ -79,7 +79,7 @@ As default, Megaphone will only load notifications that have been registered wit
 
 This means, you can see use the Laravel Notification system for other parts of your system without them appearing in the Megaphone notifications list.
 
-To send a Megaphone Notification instantiate a new Notification that extends `MBarlow\Megaphone\Types\BaseAnnouncement`. Megaphone ships with 3 as default, `MBarlow\Megaphone\Types\General`, `MBarlow\Megaphone\Types\Important` and `MBarlow\Megaphone\Types\NewFeature`.
+To send a Megaphone notification instantiate a new notification that extends `MBarlow\Megaphone\Types\BaseAnnouncement`. Megaphone ships with 3 as default, `MBarlow\Megaphone\Types\General`, `MBarlow\Megaphone\Types\Important` and `MBarlow\Megaphone\Types\NewFeature`.
 
 ```php 
 $notification = new \MBarlow\Megaphone\Types\Important(
@@ -116,7 +116,7 @@ class MyCustomNotification extends BaseAnnouncement
 }
 ```
 
-Next you will need to create the view file for how Megaphone should render that notification. To get you started you can use the base template the General, Important and New Feature notifications uses. So for example, create a new view within somewhere like `resources/views/megaphone/my-custom-notification.blade.php`.
+Next you will need to create the view file for how Megaphone should render that notification. To get you started you can use the base template the General, Important and New Feature notifications uses. So for example, create a new view within `resources/views/megaphone/my-custom-notification.blade.php`.
 
 ```html 
 @include('megaphone::types.base', ['icon' => 'ICON SVG HERE'])
@@ -124,7 +124,7 @@ Next you will need to create the view file for how Megaphone should render that 
 
 Simply, add a relevant SVG Icon for your notification within the blade include parameters array, and you're good to go. 
 
-Lastly, you need to tell Megaphone about this notification. Open up the Megaphone config file `config/megaphone.php` and find the `customTypes` attribute. This should be an associative array with the FQDN of the Notification class as the key and the path to the view as the value. For example,
+Lastly, you need to tell Megaphone about this notification. Open up the Megaphone config file `config/megaphone.php` and find the `customTypes` attribute. This should be an associative array with the FQDN of the notification class as the key and the path to the view as the value. For example,
 
 ```php 
     /*
@@ -152,12 +152,72 @@ $user = \App\Models\User::find(1);
 $user->notify($notification);
 ```
 
+## Admin Panel
 
+The usage shown so far is great for automatic flows, for example, letting a user know an action has completed in the background, "Your file is ready for download", "Your server has finished setting up", etc... but sometimes you may want to send notifications en masse. 
 
+You may want to let users know that some downtime is expected for maintenance or that a cool new feature has launched. To cover these bases, Megaphone ships with an Admin component providing a form to send a notification to all users.
 
+To use the component simply create a new page within your admin area, or create a password-protected page within your application that only you as the application owners can access and drop in this Livewire component.
 
+```html 
+<livewire:megaphone-admin></livewire:megaphone-admin>
+```
 
+Visit your page and you will be presented with a form, to first select the notification type and then fill out the title, body, link and link text. Once you have filled everything out, hit send to push the notification out to all users.
 
+The form has been styled with TailwindCSS so if it doesn't look styled correctly make sure to include TailwindCSS on the page that is showing the Admin component. Alternatively, the view file will have been published along with the other Megaphone assets so you can customise the form styling within `resources/views/vendor/megaphone/admin/create-announcement.blade.php`.
+
+### Notification Type List
+
+As default, the notification type list is created by merging the array of default notifications within `config('megaphone.types')`, with the key values of the custom types array found within `config('megaphone.customTypes')`.
+
+If you have added a lot of custom types or if you have some system notifications that should not be selectable from this type list, you can build your own type list within the `adminTypeList` attribute of the megaphone config.
+
+Simply create an array of all the notification classes you wish to have available in the drop down list.
+
+```php 
+'adminTypeList' => [
+    \MBarlow\Megaphone\Types\NewFeature::class,
+    \App\Megaphone\MyCustomNotification::class,
+],
+```
+
+This example would mean only the default New Feature notification and your Custom Notification would be available from the drop down menu.
+
+### Type List - Notification Name
+
+The name shown for each notification in the drop down menu is calculated from the class name within the `BaseAnnouncement` class that all Megaphone notifications extend. If Megaphone is unable to calculate the name of a custom notification correctly, or you wish to label it differently within the Admin Component type list, you can define a `name()` method within your notification. Megaphone will use this to display the label.
+
+```php 
+<?php
+
+namespace App\Megaphone;
+
+use MBarlow\Megaphone\Types\BaseAnnouncement;
+
+class MyCustomNotification extends BaseAnnouncement
+{
+    public static function name(): string
+    {
+        return 'Awesome Notification';
+    }
+}
+```
+
+## Clearing Old Notifications
+
+To help keep your database and your users notifications tidy, Megaphone also ships with a console command that can be added to your apps schedule to clear old notifications.
+
+Simply add the following to your `Console/Kernal.php` file within the `schedule()` method.
+
+```php 
+$schedule->command('megaphone:clear-announcements')->daily();
+```
+
+This will clear any "read" Megaphone notifications older than 2 weeks old. This allows any user that may not have logged in for a number of weeks to still view the notification before it would be cleared.
+
+The 2-week time limit for old notifications is controlled via the Megaphone config file, `config('megaphone.clearAfter')`. So should you wish to alter this cut off point, simply change this value to either extend or shorten the cut off.
 
 ## Testing
 
