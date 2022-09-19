@@ -100,6 +100,64 @@ $user->notify($notification);
 
 Next time User ID 1 visits your app, their Bell Icon will have a red indicator with "1" inside to denote 1 new, unread notification.
 
+## Custom Notifications
+
+As mentioned, you can add your own notification types to Megaphone. In order to do this, first create a new class within your application and make sure it extends `MBarlow\Megaphone\Types\BaseAnnouncement`, for example:
+
+```php 
+<?php
+
+namespace App\Megaphone;
+
+use MBarlow\Megaphone\Types\BaseAnnouncement;
+
+class MyCustomNotification extends BaseAnnouncement
+{
+}
+```
+
+Next you will need to create the view file for how Megaphone should render that notification. To get you started you can use the base template the General, Important and New Feature notifications uses. So for example, create a new view within somewhere like `resources/views/megaphone/my-custom-notification.blade.php`.
+
+```html 
+@include('megaphone::types.base', ['icon' => 'ICON SVG HERE'])
+```
+
+Simply, add a relevant SVG Icon for your notification within the blade include parameters array, and you're good to go. 
+
+Lastly, you need to tell Megaphone about this notification. Open up the Megaphone config file `config/megaphone.php` and find the `customTypes` attribute. This should be an associative array with the FQDN of the Notification class as the key and the path to the view as the value. For example,
+
+```php 
+    /*
+     * Custom notification types specific to your App
+     */
+    'customTypes' => [
+        /*
+            Associative array in the format of
+            \Namespace\To\Notification::class => 'path.to.view',
+         */
+        \App\Megaphone\MyCustomNotification::class => 'megaphone.my-custom-notification', 
+    ],
+```
+
+Now you can trigger the notification and a user will receive it via their Bell Icon.
+
+```php 
+$notification = new \App\Megaphone\MyCustomNotification(
+    'Hello World',
+    'This is a custom notification, hope you like our app!'
+);
+
+$user = \App\Models\User::find(1);
+
+$user->notify($notification);
+```
+
+
+
+
+
+
+
 
 ## Testing
 
