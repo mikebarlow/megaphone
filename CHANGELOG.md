@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [1.0.0] - TBC
+## [1.0.0] - 2022-09-19
 
 * Livewire Component to add "Bell" notification icon to your app powered by Laravel Notifications
 * Livewire Admin Component for sending manual notification to all users
