@@ -51,4 +51,4 @@ Lastly, publish the Megaphone assets. This should publish the Config file as wel
 php artisan vendor:publish --provider="MBarlow\Megaphone\MegaphoneServiceProvider"
 ```
 
-If you are not using the default user model found at `App\Models\User`, you will need to amend the value of the user class, define in the megaphone.php config file. Simply change the value to the path of your User model. The config file should be fairly well labeled so the changes are obvious.
+If you are not using the default user model found at `App\Models\User`, you will need to amend the value of the user class, defined in the megaphone.php config file. Simply change the value to the path of your User model. The config file should be fairly well labeled so the changes are obvious.
