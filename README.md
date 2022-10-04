@@ -11,6 +11,8 @@ Megaphone is a Laravel Livewire based component that uses the power of Laravels 
 
 Megaphone also ships with an Admin form component that allows you to send out a notification to all your users at once. Perfect for announcing new features or planned maintenance!
 
+<p align="center"><a href="https://serverauth.com/?utm_campaign=megaphone-sponsor&utm_source=github&utm_medium=readme" target="_blank"><img src="https://serverauth.com/assets/misc/sponsor-img.png" alt="Server Management by ServerAuth.com"></a></p>
+
 ## Installation
 
 Simply require the package via composer into your Laravel app.
