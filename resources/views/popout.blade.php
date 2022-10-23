@@ -41,7 +41,7 @@
                 <x-megaphone::display :notification="$announcement"></x-megaphone::display>
             </div>
         @empty
-            <div class="flex items-center justiyf-between">
+            <div class="flex items-center justify-between">
                 <hr class="w-full">
                 <p tabindex="0" class="focus:outline-none text-sm flex flex-shrink-0 leading-normal px-3 py-16 text-gray-500">
                     No new announcements
