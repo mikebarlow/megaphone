@@ -13,6 +13,12 @@ Megaphone also ships with an Admin form component that allows you to send out a 
 
 <p align="center"><a href="https://serverauth.com/?utm_campaign=megaphone-sponsor&utm_source=github&utm_medium=readme" target="_blank"><img src="https://serverauth.com/assets/misc/sponsor-img.png" alt="Server Management by ServerAuth.com"></a></p>
 
+## Demo
+
+Before using Megaphone, a demo is available for you to view and try the Bell Icon component and Admin component. Aside from some minor styling changes to the Admin component so it fits the layout better, everything is "out the box" and will be exactly as is when you install Megaphone yourself.
+
+[View the Megaphone Demo](https://megaphone.mikebarlow.co.uk)
+
 ## Installation
 
 Simply require the package via composer into your Laravel app.
