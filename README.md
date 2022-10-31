@@ -47,7 +47,7 @@ class User extends Authenticatable
 }
 ```
 
-Lastly, publish the Megaphone assets. This should publish the Config file as well as the templates and stylesheets.
+Lastly, publish the Megaphone assets. This should publish the Config file as well as the templates and stylesheets. You can find the published templates within `resources/views/vendor/megaphone`.
 
 ```bash
 php artisan vendor:publish --provider="MBarlow\Megaphone\MegaphoneServiceProvider"
@@ -73,7 +73,9 @@ As default, Megaphone uses TailwindCSS to style the Bell Icon and the notificati
 <link rel="stylesheet" href="{{ asset('vendor/megaphone/css/megaphone.css') }}">
 ```
 
-The last step of the installation process involves running the vendor publish command. This will also publish the template files to your apps resources directory. You can find them in `resources/views/vendor/megaphone`.
+### AlpineJS
+
+Megaphone requires AlpineJS to power some of its interactivity. If you are already using AlpineJS within your application, you can skip this step. If not you will need to [include AlpineJS into your application](https://alpinejs.dev/essentials/installation) for Megaphone to function properly.
 
 ## Sending Notifications
 
