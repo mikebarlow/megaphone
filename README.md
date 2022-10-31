@@ -70,7 +70,7 @@ This will render a Bell Icon where the component has been placed. When clicked a
 As default, Megaphone uses TailwindCSS to style the Bell Icon and the notification sidebar. If you are not using Tailwind you may want to include the Megaphone CSS into your template.
 
 ```html
-<link rel="stylesheet" href="{{ asset('vendor/megaphone/css/announcements.css') }}">
+<link rel="stylesheet" href="{{ asset('vendor/megaphone/css/megaphone.css') }}">
 ```
 
 The last step of the installation process involves running the vendor publish command. This will also publish the template files to your apps resources directory. You can find them in `resources/views/vendor/megaphone`.
