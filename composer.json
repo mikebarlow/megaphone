@@ -12,12 +12,13 @@
         }
     ],
     "require": {
+        "php": "^7.3 || ^8.0",
         "livewire/livewire": "^2.0"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.7",
         "pestphp/pest-plugin-livewire": "^1.0",
-        "orchestra/testbench": "^7.7",
+        "orchestra/testbench": "^6.0",
         "pestphp/pest-plugin-faker": "^1.0",
         "spatie/pest-plugin-test-time": "^1.1"
     },
