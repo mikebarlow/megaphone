@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.2] - 2022-11-15
+
+* Improvement: Removed the mouse over event for marking as read and added a button with click event to mark notification as read.
+
 ## [1.0.1] - 2022-11-13
 
 * Fix: Numerous Readme updates, fixing incorrect instructions. Demo also added! [PR #10](https://github.com/mikebarlow/megaphone/pull/10)

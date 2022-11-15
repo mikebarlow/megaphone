@@ -42,5 +42,17 @@ class MegaphoneServiceProvider extends ServiceProvider
             __DIR__.'/../config/megaphone.php' => config_path('megaphone.php'),
             __DIR__.'/../resources/views' => resource_path('views/vendor/megaphone'),
         ], 'megaphone');
+
+        $this->publishes([
+            __DIR__.'/../public' => public_path('vendor/megaphone'),
+        ], 'megaphone-assets');
+
+        $this->publishes([
+            __DIR__.'/../config/megaphone.php' => config_path('megaphone.php'),
+        ], 'megaphone-config');
+
+        $this->publishes([
+            __DIR__.'/../resources/views' => resource_path('views/vendor/megaphone'),
+        ], 'megaphone-views');
     }
 }
