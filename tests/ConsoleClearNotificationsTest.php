@@ -1,6 +1,6 @@
 <?php
 
-use function Spatie\PestPluginTestTime\testTime;
+use Carbon\Carbon;
 
 it('can render clear out old notifications', function () {
     $user = $this->createTestUser();
@@ -12,7 +12,9 @@ it('can render clear out old notifications', function () {
     $this->assertDatabaseCount('notifications', 1);
     $user->unreadNotifications->markAsRead();
 
-    testTime()->addWeeks(3);
+    Carbon::setTestNow(
+        Carbon::now()->addWeeks(3)
+    );
 
     $this->artisan('megaphone:clear-announcements')->assertSuccessful();
 
@@ -29,7 +31,9 @@ it('wont clear newer read notification', function () {
     $this->assertDatabaseCount('notifications', 1);
     $user->unreadNotifications->markAsRead();
 
-    testTime()->addWeeks(1);
+    Carbon::setTestNow(
+        Carbon::now()->addWeeks(1)
+    );
 
     $this->artisan('megaphone:clear-announcements')->assertSuccessful();
 
@@ -45,7 +49,9 @@ it('wont clear unread notification', function () {
     );
     $this->assertDatabaseCount('notifications', 1);
 
-    testTime()->addWeeks(3);
+    Carbon::setTestNow(
+        Carbon::now()->addWeeks(3)
+    );
 
     $this->artisan('megaphone:clear-announcements')->assertSuccessful();
 

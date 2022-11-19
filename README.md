@@ -13,6 +13,12 @@ Megaphone also ships with an Admin form component that allows you to send out a 
 
 <p align="center"><a href="https://serverauth.com/?utm_campaign=megaphone-sponsor&utm_source=github&utm_medium=readme" target="_blank"><img src="https://serverauth.com/assets/misc/sponsor-img.png" alt="Server Management by ServerAuth.com"></a></p>
 
+## Demo
+
+Before using Megaphone, a demo is available for you to view and try the Bell Icon component and Admin component. Aside from some minor styling changes to the Admin component so it fits the layout better, everything is "out the box" and will be exactly as is when you install Megaphone yourself.
+
+[View the Megaphone Demo](https://megaphone.mikebarlow.co.uk)
+
 ## Installation
 
 Simply require the package via composer into your Laravel app.
@@ -47,7 +53,7 @@ class User extends Authenticatable
 }
 ```
 
-Lastly, publish the Megaphone assets. This should publish the Config file as well as the templates and stylesheets.
+Lastly, publish the Megaphone assets. This should publish the Config file as well as the templates and stylesheets. You can find the published templates within `resources/views/vendor/megaphone`.
 
 ```bash
 php artisan vendor:publish --provider="MBarlow\Megaphone\MegaphoneServiceProvider"
@@ -70,10 +76,12 @@ This will render a Bell Icon where the component has been placed. When clicked a
 As default, Megaphone uses TailwindCSS to style the Bell Icon and the notification sidebar. If you are not using Tailwind you may want to include the Megaphone CSS into your template.
 
 ```html
-<link rel="stylesheet" href="{{ asset('vendor/megaphone/css/announcements.css') }}">
+<link rel="stylesheet" href="{{ asset('vendor/megaphone/css/megaphone.css') }}">
 ```
 
-The last step of the installation process involves running the vendor publish command. This will also publish the template files to your apps resources directory. You can find them in `resources/views/vendor/megaphone`.
+### AlpineJS
+
+Megaphone requires AlpineJS to power some of its interactivity. If you are already using AlpineJS within your application, you can skip this step. If not you will need to [include AlpineJS into your application](https://alpinejs.dev/essentials/installation) for Megaphone to function properly.
 
 ## Sending Notifications
 

@@ -29,7 +29,7 @@ class Megaphone extends Component
     {
         $this->unread = $this->announcements = collect([]);
 
-        if ($user === null || $user::class !== config('megaphone.model')) {
+        if ($user === null || get_class($user) !== config('megaphone.model')) {
             return;
         }
 
