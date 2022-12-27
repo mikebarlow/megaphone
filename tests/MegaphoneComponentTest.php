@@ -30,11 +30,31 @@ it('can render the megaphone component with notification count', function () {
 
     $this->livewire(Megaphone::class)
         ->assertViewIs('megaphone::megaphone')
-        ->assertSeeHtml('<div class="absolute -left-2 -top-2 w-6 h-6 inline-block text-center text-sm rounded-full text-white bg-red-600">
-            <span class="p-1.5">
+        ->assertSeeHtml('<span aria-label="unread count" class="absolute top-0 left-0 aspect-square max-h-fit rounded-full border-2 bg-red-500 px-1.5 shadow leading-5 text-white font-semibold text-xs">
                 1
-            </span>
-        </div>');
+            </span>');
+});
+
+it('can render the megaphone component with notification dot', function () {
+    config()->set(
+        'megaphone.showCount', false
+    );
+
+    $this->actingAs(
+        $user = $this->createTestUser()
+    );
+
+    $this->createTestNotification(
+        $user,
+        \MBarlow\Megaphone\Types\General::class
+    );
+
+    $this->livewire(Megaphone::class)
+        ->assertViewIs('megaphone::megaphone')
+        ->assertSeeHtml('<span aria-label="has unread notifications" class="absolute top-0 left-0 aspect-square h-2/5 rounded-full bg-red-500 shadow">')
+        ->assertDontSeeHtml('<span aria-label="unread count" class="absolute top-0 left-0 aspect-square max-h-fit rounded-full border-2 bg-red-500 px-1.5 shadow leading-5 text-white font-semibold text-xs">
+                1
+            </span>');
 });
 
 it('can load announcements', function () {
