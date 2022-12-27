@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.1.0] - 2022-12-27
+
+* Improvement: New SVG Bell Icon [PR #17](https://github.com/mikebarlow/megaphone/pull/17)
+* Improvement: New config option to toggle unread notification count [PR #17](https://github.com/mikebarlow/megaphone/pull/17)
+* Fix: Notification badge styling with long unread notification counts [PR #17](https://github.com/mikebarlow/megaphone/pull/17)
+* Fix: Readme typo [PR #16](https://github.com/mikebarlow/megaphone/pull/16)
+
 ## [1.0.2] - 2022-11-15
 
 * Improvement: Removed the mouse over event for marking as read and added a button with click event to mark notification as read.
