@@ -166,8 +166,8 @@
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
-.megaphone .fill-transparent {
-  fill: transparent;
+.megaphone .fill-black {
+  fill: #000;
 }
 .megaphone .fill-blue-600 {
   fill: #2563eb;
@@ -334,6 +334,11 @@
 }
 .megaphone .focus\:ring-offset-2:focus {
   --tw-ring-offset-width: 2px;
+}
+@media (prefers-color-scheme: dark) {
+  .megaphone .dark\:fill-white {
+    fill: #fff;
+  }
 }
 @media (min-width: 1536px) {
   .megaphone .\32xl\:w-4\/12 {
