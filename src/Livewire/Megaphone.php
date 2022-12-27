@@ -14,6 +14,8 @@ class Megaphone extends Component
 
     public $unread;
 
+    public $showCount;
+
     public $rules = [
         'unread' => 'required',
         'announcements' => 'required',
@@ -23,6 +25,7 @@ class Megaphone extends Component
     {
         $this->user = $request->user();
         $this->loadAnnouncements($this->user);
+        $this->showCount = config('megaphone.showCount', true);
     }
 
     public function loadAnnouncements($user)

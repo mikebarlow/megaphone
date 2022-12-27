@@ -40,4 +40,10 @@ return [
      * Clear Megaphone notifications older than....
      */
     'clearAfter' => '2 weeks',
+
+    /*
+     * Option for setting the icon to show actual count of unread Notifications or
+     * show a dot instead
+     */
+    'showCount' => true,
 ];

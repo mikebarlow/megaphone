@@ -1,6 +1,17 @@
 [x-cloak] {
   display: none !important;
 }
+.megaphone .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
 .megaphone .fixed {
   position: fixed;
 }
@@ -10,23 +21,14 @@
 .megaphone .relative {
   position: relative;
 }
-.megaphone .-left-2 {
-  left: -0.5rem;
-}
-.megaphone .-top-2 {
-  top: -0.5rem;
-}
 .megaphone .top-0 {
   top: 0px;
-}
-.megaphone .right-0 {
-  right: 0px;
 }
 .megaphone .left-0 {
   left: 0px;
 }
-.megaphone .z-20 {
-  z-index: 20;
+.megaphone .right-0 {
+  right: 0px;
 }
 .megaphone .z-50 {
   z-index: 50;
@@ -47,23 +49,26 @@
 .megaphone .block {
   display: block;
 }
-.megaphone .inline-block {
-  display: inline-block;
-}
 .megaphone .flex {
   display: flex;
 }
-.megaphone .h-12 {
-  height: 3rem;
-}
-.megaphone .h-6 {
-  height: 1.5rem;
+.megaphone .aspect-square {
+  aspect-ratio: 1 / 1;
 }
 .megaphone .h-full {
   height: 100%;
 }
+.megaphone .h-2\/5 {
+  height: 40%;
+}
+.megaphone .h-12 {
+  height: 3rem;
+}
 .megaphone .h-screen {
   height: 100vh;
+}
+.megaphone .h-6 {
+  height: 1.5rem;
 }
 .megaphone .h-8 {
   height: 2rem;
@@ -71,14 +76,19 @@
 .megaphone .h-4\/5 {
   height: 80%;
 }
+.megaphone .max-h-fit {
+  max-height: -webkit-fit-content;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+}
+.megaphone .w-full {
+  width: 100%;
+}
 .megaphone .w-12 {
   width: 3rem;
 }
 .megaphone .w-6 {
   width: 1.5rem;
-}
-.megaphone .w-full {
-  width: 100%;
 }
 .megaphone .w-8 {
   width: 2rem;
@@ -123,6 +133,9 @@
 .megaphone .rounded {
   border-radius: 0.25rem;
 }
+.megaphone .border-2 {
+  border-width: 2px;
+}
 .megaphone .border {
   border-width: 1px;
 }
@@ -137,9 +150,9 @@
   --tw-border-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-border-opacity));
 }
-.megaphone .bg-red-600 {
+.megaphone .bg-red-500 {
   --tw-bg-opacity: 1;
-  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
+  background-color: rgb(239 68 68 / var(--tw-bg-opacity));
 }
 .megaphone .bg-gray-50 {
   --tw-bg-opacity: 1;
@@ -153,8 +166,8 @@
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
-.megaphone .fill-white {
-  fill: #fff;
+.megaphone .fill-black {
+  fill: #000;
 }
 .megaphone .fill-blue-600 {
   fill: #2563eb;
@@ -165,12 +178,6 @@
 .megaphone .fill-green-600 {
   fill: #16a34a;
 }
-.megaphone .p-1\.5 {
-  padding: 0.375rem;
-}
-.megaphone .p-1 {
-  padding: 0.25rem;
-}
 .megaphone .p-8 {
   padding: 2rem;
 }
@@ -179,6 +186,14 @@
 }
 .megaphone .p-2 {
   padding: 0.5rem;
+}
+.megaphone .px-1\.5 {
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+}
+.megaphone .px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
 }
 .megaphone .px-3 {
   padding-left: 0.75rem;
@@ -206,29 +221,32 @@
 .megaphone .pt-1 {
   padding-top: 0.25rem;
 }
-.megaphone .text-center {
-  text-align: center;
-}
 .megaphone .text-right {
   text-align: right;
 }
-.megaphone .text-sm {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
+.megaphone .font-sans {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+.megaphone .text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 .megaphone .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
 }
-.megaphone .text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
+.megaphone .text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 .megaphone .font-semibold {
   font-weight: 600;
 }
 .megaphone .font-bold {
   font-weight: 700;
+}
+.megaphone .leading-5 {
+  line-height: 1.25rem;
 }
 .megaphone .leading-6 {
   line-height: 1.5rem;
@@ -241,6 +259,10 @@
 }
 .megaphone .leading-3 {
   line-height: .75rem;
+}
+.megaphone .text-gray-900 {
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity));
 }
 .megaphone .text-white {
   --tw-text-opacity: 1;
@@ -269,6 +291,11 @@
 .megaphone .shadow {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.megaphone .shadow-md {
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 .megaphone .drop-shadow {
@@ -307,6 +334,11 @@
 }
 .megaphone .focus\:ring-offset-2:focus {
   --tw-ring-offset-width: 2px;
+}
+@media (prefers-color-scheme: dark) {
+  .megaphone .dark\:fill-white {
+    fill: #fff;
+  }
 }
 @media (min-width: 1536px) {
   .megaphone .\32xl\:w-4\/12 {
