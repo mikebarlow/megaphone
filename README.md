@@ -49,7 +49,7 @@ use MBarlow\Megaphone\HasMegaphone;
 class User extends Authenticatable
 {
     use Notifiable;
-    use HasMegaphone
+    use HasMegaphone;
 }
 ```
 
