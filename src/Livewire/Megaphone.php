@@ -8,8 +8,6 @@ use Livewire\Component;
 
 class Megaphone extends Component
 {
-    public $notifiable_id;
-
     public $announcements;
 
     public $unread;
@@ -21,17 +19,15 @@ class Megaphone extends Component
         'announcements' => 'required',
     ];
 
-    public function mount(Request $request)
+    public function mount()
     {
-        $this->notifiable_id = $request->user()->id ?? null;
-        $notifiable = $this->getNotifiable();
-        $this->loadAnnouncements($notifiable);
+        $this->loadAnnouncements($this->getNotifiable());
         $this->showCount = config('megaphone.showCount', true);
     }
 
     public function getNotifiable()
     {
-        return config('megaphone.model')::find($this->notifiable_id);
+        return config('megaphone.model')::find(request()->user()->id ?? null);
     }
 
     public function loadAnnouncements($notifiable)
