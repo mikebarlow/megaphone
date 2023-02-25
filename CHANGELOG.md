@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.0] - 2023-02-25
+
+* Removed `public $user` from component and changed loading of announcements to prevent user model data exposure. [PR #22](https://github.com/mikebarlow/megaphone/pull/22)
+* Added ability to pass in the notifiableId via component render
+
 ## [1.1.0] - 2022-12-27
 
 * Improvement: New SVG Bell Icon [PR #17](https://github.com/mikebarlow/megaphone/pull/17)

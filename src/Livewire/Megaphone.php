@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class Megaphone extends Component
 {
-    public $user;
+    public $notifiableId;
 
     public $announcements;
 
@@ -23,20 +23,28 @@ class Megaphone extends Component
 
     public function mount(Request $request)
     {
-        $this->user = $request->user();
-        $this->loadAnnouncements($this->user);
+        if (empty($this->notifiableId) && $request->user() !== null) {
+            $this->notifiableId = $request->user()->id;
+        }
+
+        $this->loadAnnouncements($this->getNotifiable());
         $this->showCount = config('megaphone.showCount', true);
     }
 
-    public function loadAnnouncements($user)
+    public function getNotifiable()
+    {
+        return config('megaphone.model')::find($this->notifiableId);
+    }
+
+    public function loadAnnouncements($notifiable)
     {
         $this->unread = $this->announcements = collect([]);
 
-        if ($user === null || get_class($user) !== config('megaphone.model')) {
+        if ($notifiable === null || get_class($notifiable) !== config('megaphone.model')) {
             return;
         }
 
-        $announcements = $user->announcements()->get();
+        $announcements = $notifiable->announcements()->get();
         $this->unread = $announcements->whereNull('read_at');
         $this->announcements = $announcements->whereNotNull('read_at');
     }
@@ -49,6 +57,6 @@ class Megaphone extends Component
     public function markAsRead(DatabaseNotification $notification)
     {
         $notification->markAsRead();
-        $this->loadAnnouncements($this->user);
+        $this->loadAnnouncements($this->getNotifiable());
     }
 }
