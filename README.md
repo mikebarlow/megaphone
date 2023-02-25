@@ -229,6 +229,22 @@ This will clear any "read" Megaphone notifications older than 2 weeks old. This 
 
 The 2-week time limit for old notifications is controlled via the Megaphone config file, `config('megaphone.clearAfter')`. So should you wish to alter this cut off point, simply change this value to either extend or shorten the cut off.
 
+## Changing Notifiable Model
+
+Because notifications can be attached to any model via the `Notifiable` trait, Megaphone too can be attached to any model providing the model also has the `Notifiable` trait attached.
+
+As default, Megaphone assumes you will be attaching it to the standard Laravel User model and when loading notifications, it will attempt to retrieve the ID of the logged in user from the Request object.
+
+If you are wanting to attach Megaphone to a Team model for example, change the `model` attribute of the published megaphone config file, `megaphone.php`.
+
+When rendering the Megaphone component, you will then need to pass in the ID of the notifiable model into the component so Megaphone can load the correct notifications
+
+```html
+<livewire:megaphone :notifiableId="$user->team->id"></livewire:megaphone>
+```
+
+
+
 ## Testing
 
 If you wish to run the tests, clone out the repository
