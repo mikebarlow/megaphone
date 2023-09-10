@@ -19,6 +19,10 @@ Before using Megaphone, a demo is available for you to view and try the Bell Ico
 
 [View the Megaphone Demo](https://megaphone.mikebarlow.co.uk)
 
+## Upgrade from 1.x
+
+Upgrade docs...
+
 ## Installation
 
 Simply require the package via composer into your Laravel app.
