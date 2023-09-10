@@ -5,7 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [2.0.0] - TBC
 
-* Updated PHP requirement to 8.1 and above [PR#28](https://github.com/mikebarlow/megaphone/pull/28)
+* Updated PHP requirement to 8.1 and above (7.4 and 8.0 dropped) [PR#28](https://github.com/mikebarlow/megaphone/pull/28)
 * Updated to Livewire 3 [PR#28](https://github.com/mikebarlow/megaphone/pull/28)
 * Updated Testbench and Pest [PR#28](https://github.com/mikebarlow/megaphone/pull/28)
 
