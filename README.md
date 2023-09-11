@@ -46,6 +46,8 @@ Find all instances of `wire:model.lazy` and replace it with `wire:model.blur`.
 
 ## Installation
 
+For the Livewire 2 version of Megaphone, see the 1.x versions of Megaphone and the [1.x branch](https://github.com/mikebarlow/megaphone/tree/1.x).
+
 Simply require the package via composer into your Laravel app.
 
     composer require mbarlow/megaphone
