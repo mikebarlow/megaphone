@@ -19,15 +19,40 @@ Before using Megaphone, a demo is available for you to view and try the Bell Ico
 
 [View the Megaphone Demo](https://megaphone.mikebarlow.co.uk)
 
+## Upgrade from 1.x
+
+Megaphone has been updated to support Livewire 3. This also means PHP requirements have been updated to match the requirements of Livewire 3 which means you need to be running PHP 8.1 or above (PHP 7.4 and 8.0 are no longer supported).
+Then make sure you follow the [Livewire upgrade guide](https://livewire.laravel.com/docs/upgrading).
+
+Update your Megaphone requirement to 2.* by running the following command in your terminal.
+
+```bash
+    composer require mbarlow/megaphone "^2.0"
+```
+
+### AlpineJS
+
+If you previously included AlpineJS specifically for Megaphone then you can now remove that from your JS include because it is now bundled with Livewire.
+
+### Template Changes
+
+If you are using the Admin component and are running with the Megaphone views published to your resources folder, you may wish to make these manual changes.
+
+Changes are all to `create-announcement.blade.php` which, if published, should be found at `resources/views/vendor/megaphone/admin/create-announcement.blade.php`.
+
+Find `wire:model="type"` and replace it with `wire:model.live="type"`.
+
+Find all instances of `wire:model.lazy` and replace it with `wire:model.blur`.
+
 ## Installation
 
 Simply require the package via composer into your Laravel app.
 
     composer require mbarlow/megaphone
 
-If you aren't already using Laravel Livewire in your app, Megaphone should include the package via its dependency. Once composer has finished installing, make sure you run the [Livewire installation steps](https://laravel-livewire.com/docs/2.x/installation).
+If you aren't already using Laravel Livewire in your app, Megaphone should include the package via its dependency. Once composer has finished installing, make sure you run the [Livewire installation steps](https://livewire.laravel.com/docs/installation).
 
-Once Livewire has been installed, if you haven't already, ensure the [Laravel Database Notifications have been installed](https://laravel.com/docs/9.x/notifications#database-prerequisites) into your app.
+Once Livewire has been installed, if you haven't already, ensure the [Laravel Database Notifications have been installed](https://laravel.com/docs/10.x/notifications#database-prerequisites) into your app.
 
 ```bash
 php artisan notifications:table
@@ -35,7 +60,7 @@ php artisan notifications:table
 php artisan migrate 
 ```
 
-This should create database table used to house your notifications. Next, make sure your User model (or relevant alternative model) has the notifiable trait added as mentioned in the [Laravel Documentation](https://laravel.com/docs/9.x/notifications#using-the-notifiable-trait) and also add the `HasMegaphone` trait provided by Megaphone.
+This should create database table used to house your notifications. Next, make sure your User model (or relevant alternative model) has the notifiable trait added as mentioned in the [Laravel Documentation](https://laravel.com/docs/10.x/notifications#using-the-notifiable-trait) and also add the `HasMegaphone` trait provided by Megaphone.
 
 ```php
 <?php
@@ -79,10 +104,6 @@ As default, Megaphone uses TailwindCSS to style the Bell Icon and the notificati
 <link rel="stylesheet" href="{{ asset('vendor/megaphone/css/megaphone.css') }}">
 ```
 
-### AlpineJS
-
-Megaphone requires AlpineJS to power some of its interactivity. If you are already using AlpineJS within your application, you can skip this step. If not you will need to [include AlpineJS into your application](https://alpinejs.dev/essentials/installation) for Megaphone to function properly.
-
 ## Sending Notifications
 
 As default, Megaphone will only load notifications that have been registered within the Megaphone config file. Notifications shipped with Megaphone will be within `config('megaphone.types')`. This will be merged with the key values of `config('megaphone.customTypes')` to create the list of supported notifications.
@@ -100,7 +121,7 @@ $notification = new \MBarlow\Megaphone\Types\Important(
 );
 ```
 
-Now, simply notify the required user of the notification as per the [Laravel Documentation](https://laravel.com/docs/9.x/notifications#using-the-notifiable-trait).
+Now, simply notify the required user of the notification as per the [Laravel Documentation](https://laravel.com/docs/10.x/notifications#using-the-notifiable-trait).
 
 ```php 
 $user = \App\Models\User::find(1);

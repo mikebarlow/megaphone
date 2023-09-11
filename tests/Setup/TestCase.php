@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\View;
 use Livewire\LivewireServiceProvider;
 use MBarlow\Megaphone\MegaphoneServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
-use function Pest\Faker\faker;
+use function Pest\Faker\fake;
 
 class TestCase extends BaseTestCase
 {
@@ -22,7 +22,7 @@ class TestCase extends BaseTestCase
 
     protected function createTestUser(): User
     {
-        $faker = faker();
+        $faker = fake();
         $user = new User();
         $user->name = $faker->name;
         $user->email = $faker->email;
@@ -34,7 +34,7 @@ class TestCase extends BaseTestCase
 
     protected function createTestNotification($user, $notifClass)
     {
-        $faker = faker();
+        $faker = fake();
 
         $notification = new $notifClass(
             $faker->sentence,

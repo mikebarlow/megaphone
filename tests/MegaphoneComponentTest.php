@@ -72,9 +72,10 @@ it('can load announcements', function () {
     );
     $user->unreadNotifications->first()->markAsRead();
 
+
     $this->livewire(Megaphone::class)
         ->call('loadAnnouncements', $user)
-        ->assertSet('unread', $user->unreadNotifications()->get())
+        ->assertSet('unread', $user->announcements()->get()->whereNull('read_at'))
         ->assertSet('announcements', $user->readNotifications);
 });
 
@@ -95,7 +96,7 @@ it('can mark notification as read', function () {
 
     $this->livewire(Megaphone::class)
         ->call('markAsRead', $notification)
-        ->assertSet('unread', $user->unreadNotifications()->get())
+        ->assertSet('unread', $user->announcements()->get()->whereNull('read_at'))
         ->assertSet('announcements', $user->readNotifications);
 });
 
