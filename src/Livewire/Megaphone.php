@@ -21,6 +21,10 @@ class Megaphone extends Component
         'announcements' => 'required',
     ];
 
+    protected $listeners = [
+        'refreshNotifications' => '$refresh',
+    ];
+
     public function mount(Request $request)
     {
         if (empty($this->notifiableId) && $request->user() !== null) {
