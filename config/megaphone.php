@@ -46,4 +46,25 @@ return [
      * show a dot instead
      */
     'showCount' => true,
+
+    /**
+     * Default whether to poll for new notifications
+     */
+    'defaultPolling' => true,
+
+    /**
+     * Default how often to poll for new notifications in milliseconds
+     */
+    'defaultPollInterval' => 2000,
+
+    /**
+     * Default Route to handle the AJAX request for polling for new notifications
+     * Cannot be changed dynamically.
+     */
+    'pollRouteUrl' => '/megaphone/poll',
+
+    /**
+     * Default Controller action to handle the AJAX request for polling for new notifications
+     */
+    'pollAction' => \MBarlow\Megaphone\Http\Controllers\MegaphonePollController::class,
 ];

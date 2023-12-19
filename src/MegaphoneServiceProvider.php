@@ -54,5 +54,11 @@ class MegaphoneServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../resources/views' => resource_path('views/vendor/megaphone'),
         ], 'megaphone-views');
+
+        // Register routes
+        $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
+
+        // Register Controller
+        $this->app->make('MBarlow\Megaphone\Http\Controllers\MegaphonePollController');
     }
 }
