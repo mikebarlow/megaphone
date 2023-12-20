@@ -113,4 +113,10 @@ class Megaphone extends Component
         $notification->markAsRead();
         $this->loadAnnouncements($this->getNotifiable());
     }
+
+    public function markAllAsRead()
+    {
+        $this->notifiable->unreadNotifications->markAsRead();
+        $this->loadAnnouncements($this->getNotifiable());
+    }
 }

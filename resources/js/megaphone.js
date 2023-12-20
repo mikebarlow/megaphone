@@ -62,11 +62,9 @@ document.addEventListener('alpine:init', () => {
             },
 
             markAllAsRead() {
-                this.receivedUnreadNotifications.forEach(notification => {
-                    window.Livewire.find(this.notificationComponentWireId).call('markAsRead', notification);
-                })
                 this.receivedUnreadNotifications = [];
-                window.Livewire.dispatch('refreshNotifications', {unread_notifications: this.unreadCount});
+                window.Livewire.find(this.notificationComponentWireId).call('markAllAsRead', notification);
+                window.Livewire.dispatch('refreshNotifications', {unread_notifications: []});
             },
         })
     );

@@ -28,6 +28,11 @@
                     <h2 tabindex="0" class="focus:outline-none dark:text-slate-300 text-sm leading-normal text-gray-600">
                         Unread Notifications
                     </h2>
+
+                    <!----- Mark all as read button ----->
+                    <h2 x-on:click="markAllAsRead" wire-id="{{ $this->getId() }}" tabindex="0" class="focus:outline-none dark:text-slate-400 float-right text-xs text-sm leading-normal text-gray-500">
+                        Mark all as read
+                    </h2>
                 </div>
 
                 <!----- Unread Notifications ----->
