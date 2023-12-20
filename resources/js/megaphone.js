@@ -4,6 +4,7 @@ document.addEventListener('alpine:init', () => {
             unreadCount: 0,
             isShowingFilterSection: false,
             receivedUnreadNotifications: [],
+            error: null,
             notificationComponentWireId: null,
 
             init() {
@@ -23,12 +24,19 @@ document.addEventListener('alpine:init', () => {
 
             // Function to fetch new (unread) notifications from the server
             fetchNotifications() {
-                fetch(config.pollRouteUrl)
+                fetch(config.pollRouteUrl+'?notifiable='+config.notifiable, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRF-TOKEN': config.csrfToken,
+                    },
+                })
                     .then(response => response.json())
                     .then(data => {
-                        if (data.unread_notifications) {
+                        if (data.data.unread_notifications.length > 0) {
                             // Handle new notifications
-                            data.unread_notifications.forEach(notification => {
+                            data.data.unread_notifications.forEach(notification => {
                                 if(!this.receivedUnreadNotifications.includes(notification)){
                                     window.Livewire.dispatch('refreshNotifications', {unread_notifications: data.unread_notifications});
                                     this.receivedUnreadNotifications.push(notification);
@@ -36,6 +44,10 @@ document.addEventListener('alpine:init', () => {
                             })
                         } else {
                             // No new notifications
+                        }
+                        if(data.error){
+                            console.error(data.error);
+                            this.error = data.error;
                         }
                     })
                     .catch(error => console.error('Error fetching notifications:', error));

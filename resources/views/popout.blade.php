@@ -16,6 +16,13 @@
                 <p tabindex="0" class="focus:outline-none dark:text-gray-400 text-2xl font-semibold leading-6 text-gray-800">Notifications</p>
             </div>
 
+            <!----------------- Error Message ----------------->
+            <div x-show="error" class="flex items-center justify-between">
+                <hr class="w-full">
+                <p tabindex="0" x-text="error" class="focus:outline-none flex flex-shrink-0 px-3 py-16 text-sm leading-normal text-red-500"></p>
+                <hr class="w-full">
+            </div>
+
             <div x-show="unreadCount > 0" >
                 <div class="dark:border-slate-600 flex justify-between pt-8 pb-2 border-b border-gray-300">
                     <h2 tabindex="0" class="focus:outline-none dark:text-slate-300 text-sm leading-normal text-gray-600">

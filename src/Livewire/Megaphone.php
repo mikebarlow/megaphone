@@ -2,14 +2,20 @@
 
 namespace MBarlow\Megaphone\Livewire;
 
-use Illuminate\Http\Request;
-use Illuminate\Notifications\DatabaseNotification;
-use Livewire\Attributes\Locked;
 use Livewire\Component;
+use Illuminate\Http\Request;
+use Livewire\Attributes\Locked;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\DatabaseNotification;
 
 class Megaphone extends Component
 {
-    public $notifiableId;
+    /**
+     * The model that whose notifications should be displayed
+     *
+     * @var Model
+     */
+    public ?Model $notifiable = null;
 
     public $announcements;
 
@@ -50,8 +56,8 @@ class Megaphone extends Component
 
     public function initialize(Request $request)
     {
-        if (empty($this->notifiableId) && $request->user() !== null) {
-            $this->notifiableId = $request->user()->id;
+        if (empty($this->notifiable) && $request->user() !== null) {
+            $this->notifiable = $request->user();
         }
 
         $this->loadAnnouncements($this->getNotifiable());
@@ -68,7 +74,7 @@ class Megaphone extends Component
 
     public function getNotifiable()
     {
-        return config('megaphone.model')::find($this->notifiableId);
+        return $this->notifiable;
     }
 
     public function loadAnnouncements($notifiable)
@@ -87,6 +93,18 @@ class Megaphone extends Component
     public function render()
     {
         $this->initialize(request());
+
+        if(!$this->notifiable) {
+            return  <<<HTML
+                <div class="flex items-center justify-center h-full">
+                    <div class="text-center">
+                        <h1 class="text-3xl font-bold text-gray-900">Megaphone</h1>
+                        <p class="mt-2 text-sm text-gray-500">Please set the <code>notifiable</code> property on the Megaphone component.</p>
+                    </div>
+                </div>
+            HTML;
+        }
+
         return view('megaphone::megaphone');
     }
 

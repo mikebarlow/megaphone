@@ -2,26 +2,63 @@
 
 namespace MBarlow\Megaphone\Http\Controllers;
 
-class MegaphonePollController
+use App\Http\Controllers\Controller;
+
+class MegaphonePollController extends Controller
 {
-
-    public function getNotifiable()
-    {
-        if(!auth()->check()) return abort(403, 'Login required');
-
-        // TODO: This is a hack to get the current user.  It should be passed in as a parameter.
-        // However, simply passing it as a parameter would lead to a security hole, as the user could
-        // pass in any user ID they wanted.  So, we need to pass in the user ID and then check that
-        // the user ID matches the current user, or at least that the current user has permission
-        // to view the notifications for the user ID passed in.
-        return auth()->user();
-    }
+    public $notifiable;
 
     public function __invoke()
     {
-        $unreadNotifications = $this->getNotifiable()->unreadNotifications->pluck('id');
+
+        /**
+         * Get the $notifiable model from the request
+         */
+
+        // Verify CSRF token
+        if(!request()->header('X-CSRF-TOKEN') || !hash_equals(request()->header('X-CSRF-TOKEN'), csrf_token())) {
+            return response()->json([
+                ['error' => 'Invalid CSRF token']
+            ])->setStatusCode(401);
+        }
+
+        // Verify logged in
+        if(!auth()->check()) return response()->json([
+            ['error' => 'Not logged in']
+        ])->setStatusCode(401);
+
+        // Verify notifiable
+        if(!request()->get('notifiable')) return response()->json([
+            ['error' => 'No notifiable']
+        ])->setStatusCode(400);
+
+        $notifiableProps = json_decode(base64_decode(request()->get('notifiable')), true);
+
+        // Verify notifiable model and id
+        if(!isset($notifiableProps['model']) || !isset($notifiableProps['id'])) {
+            return response()->json([
+                ['error' => 'Invalid notifiable']
+            ])->setStatusCode(400);
+        }
+
+        $this->notifiable =  $notifiableProps['model']::find($notifiableProps['id']);
+
+        /**
+         * Access the notification
+         */
+        if(
+            !$this->notifiable ||
+            !auth()->user()->canAccessNotifications($this->notifiable)
+        ) {
+            return response()->json(
+                ['error' => 'Not authorized or notifiable not found'] // Joining these two errors for security reasons (to prevent user/model enumeration)
+            )->setStatusCode(401);
+        }
+        $unreadNotifications = $this->notifiable->unreadNotifications->pluck('id');
         return response()->json([
-            'unread_notifications' => $unreadNotifications->count() ? $unreadNotifications : null
+            'data' => [
+                'unread_notifications' => $unreadNotifications
+            ]
         ]);
     }
 }

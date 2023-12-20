@@ -1,10 +1,11 @@
 <?php
 
 return [
-    /*
-     * Model that has the "Notifiable" and "HasMegaphone" Traits
+
+    /**
+     * The name of the permission to check against when determining if a model can access another model's notifications
      */
-    'model' => \App\Models\User::class,
+    'access-notifications-permission-name' => 'access notifications',
 
     /*
      * Array of all the notification types to display in Megaphone
