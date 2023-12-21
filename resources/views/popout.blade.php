@@ -5,12 +5,8 @@
         <div class="fixed top-0 left-0 z-0 w-full h-full" @click="open = false"></div>
         <div class="2xl:w-4/12 sm:w-2/5 bg-gray-50 dark:bg-slate-800 absolute right-0 z-30 w-full h-screen p-4 pt-8 overflow-y-auto shadow-md">
 
-            <button role="button" aria-label="close modal" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 rounded-md cursor-pointer" @click="open = false">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M18 6L6 18" stroke="#4B5563" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M6 6L18 18" stroke="#4B5563" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-            </button>
+            <button class="right-0" role="button" aria-label="close modal" @click="open = false"><x-icon name="x-mark" class="w-6 h-6 text-gray-500" /></button>
+
 
             <div class="flex items-center justify-between">
                 <p tabindex="0" class="focus:outline-none dark:text-gray-400 text-2xl font-semibold leading-6 text-gray-800">Notifications</p>
