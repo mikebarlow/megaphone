@@ -19,9 +19,27 @@ class Megaphone extends Component
 
     public $announcements;
 
+    public $allAnnouncementsTypes;
+
     public $unread;
 
     public $showCount;
+
+    /**
+     * The keys that the annoucements should be have when displayed (serialised from the database and passed to the view)
+     * (This is to prevent the entire model being passed to the view)
+     * This can be modified to include any additional fields you want to display
+     * @var array
+     */
+    #[Locked]
+    public $keys = [
+        'id',
+        'type',
+        // 'read_at',
+        // 'created_at',
+        // 'updated_at',
+    ];
+
 
     /**
      * Whether to poll for new notifications
@@ -86,8 +104,23 @@ class Megaphone extends Component
         }
 
         $announcements = $notifiable->announcements()->get();
+
         $this->unread = $announcements->whereNull('read_at');
         $this->announcements = $announcements->whereNotNull('read_at');
+
+        $this->allAnnouncementsTypes = $notifiable->announcements()->select('type')->distinct()->get();
+
+    }
+
+    public function markAsUnread(DatabaseNotification $notification)
+    {
+        $notification->markAsUnread();
+        $this->loadAnnouncements($this->getNotifiable());
+    }
+
+    public function findNotification($id)
+    {
+        return $this->notifiable->announcements()->where('id', $id)->first()->only($this->keys);
     }
 
     public function render()

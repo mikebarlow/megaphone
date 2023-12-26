@@ -10,6 +10,8 @@
 
             <div class="flex items-center justify-between">
                 <p tabindex="0" class="focus:outline-none dark:text-gray-400 text-2xl font-semibold leading-6 text-gray-800">Notifications</p>
+                <button x-on:click="isShowingFilterSection = !isShowingFilterSection" x-show="!isShowingFilterSection"><x-icon name="adjustments-vertical" class="w-6 h-6 text-gray-500" /></button>
+                <button x-on:click="isShowingFilterSection = !isShowingFilterSection" x-show="isShowingFilterSection"><x-icon name="bars-4" class="w-6 h-6 text-gray-500" /></button>
             </div>
 
             <!----------------- Error Message ----------------->
@@ -20,7 +22,7 @@
             </div>
 
             <div x-cloak x-show="!isShowingFilterSection">
-                <div x-show="unreadCount > 0" >
+                <div x-show="getUnreadCount(filterType) > 0" >
                     <div class="dark:border-slate-600 flex justify-between pt-8 pb-2 border-b border-gray-300">
                         <h2 tabindex="0" class="focus:outline-none dark:text-slate-300 text-sm leading-normal text-gray-600">
                             Unread Notifications
@@ -35,7 +37,7 @@
                     <!----- Unread Notifications ----->
                     @foreach ($unread as $announcement)
                         @php $id = $announcement->id; @endphp
-                        <div id="unread-notification-{{ $id }}">
+                        <div id="unread-notification-{{ $id }}" x-show="shouldShowNotification(@js($announcement->only($keys)))" class="flex flex-col">
                             <div class="w-full p-3 mt-4 bg-white  dark:bg-slate-900 border-none  rounded flex flex-shrink-0 {{ $announcement->read_at === null ? "drop-shadow shadow border" : ""  }}">
                                 <x-megaphone::display :notification="$announcement"></x-megaphone::display>
 
@@ -59,7 +61,7 @@
                     </h2>
                 @endif
                 @foreach ($announcements as $announcement)
-                    <div class="w-full p-3   dark:bg-slate-800 dark:border-slate-700 border-b border-gray-300 rounded flex flex-shrink-0 {{ $announcement->read_at === null ? "drop-shadow shadow border" : ""  }}">
+                    <div x-cloak x-show="shouldShowNotification(@js($announcement->only($keys)))" class="w-full p-3   dark:bg-slate-800 dark:border-slate-700 border-b border-gray-300 rounded flex flex-shrink-0 {{ $announcement->read_at === null ? "drop-shadow shadow border" : ""  }}">
                         <x-megaphone::display :notification="$announcement"></x-megaphone::display>
                     </div>
                 @endforeach
@@ -75,9 +77,50 @@
                 @endif
             </div>
 
+            <!---------------- Filter Section ----------------->
+            <div x-cloak x-show="isShowingFilterSection">
+                <div class="flex items-center justify-between">
+                    <p tabindex="0" class="focus:outline-none dark:text-gray-400 text-2xl font-semibold leading-6 text-gray-800">Filter</p>
+                </div>
+
+                <div class="flex flex-col mt-6">
+                    <div class="flex flex-col justify-between">
+                        <div class="flex flex-col">
+                            <h2 tabindex="0" class="focus:outline-none dark:text-slate-400 text-sm leading-normal text-gray-600">
+                                Filter by Type
+                            </h2>
+                            <div class="flex flex-col mt-2">
+                                <div class="dark:hover:bg-slate-900 flex justify-between p-2 border-b border-gray-700"
+                                    x-on:click="filterByType(null)"
+                                    x-bind:class=" !filterType ? 'border-l-green-500 dark:bg-slate-900 border-l-4' : ''"
+                                >
+                                    <span class="dark:text-gray-400 ml-2 text-sm leading-normal">All </span>
+                                    @if($this->unread->count())
+                                        <span class="dark:text-gray-400 ml-2 text-sm leading-normal"> {{ $this->unread->count() }} </span>
+                                    @endif
+                                </div>
+
+                                @foreach($allAnnouncementsTypes as $announcementType)
+                                    @php
+                                        $type = $announcementType->type;
+                                        // kinda a hack to get the name of the notification class
+                                        $name = getNotificationInstance($announcementType->type, $announcements->first())->name();
+                                    @endphp
+                                    <div x-bind:class="filterType === @js($type) ? 'dark:bg-slate-900 border-l-green-500 border-l-4' : ''"
+                                        class="dark:hover:bg-slate-900 dark:bg-slate-800 flex justify-between p-2 border-b border-gray-700" x-on:click="filterByType(@js($type))">
+                                        <span class="dark:text-gray-400 ml-2 text-sm leading-normal">{{ $name  }}</span>
+
+                                        <span x-show="getUnreadCount('{{ addcslashes($type, '\\"\'/') }}');"
+                                        x-text="getUnreadCount('{{ addcslashes($type, '\\"\'/') }}');" class="dark:text-gray-400 ml-2 text-sm leading-normal"></span>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-
-
     </div>
 
     <!-- Background Overlay, when the sidebar is open -->
