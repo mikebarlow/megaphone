@@ -1,4 +1,6 @@
 document.addEventListener('alpine:init', () => {
+    let initPageTitle = document.title ;//.replace(`(${this.getUnreadCount()})`, '');
+
     Alpine.data('notifications', (config={}) =>({
             unreadNotifications: 0,
             isShowingFilterSection: false,
@@ -10,10 +12,14 @@ document.addEventListener('alpine:init', () => {
             notificationComponentWireId: null,
             isShowingFilterSection: false,
             filterType: null,
+            showTitleCountInPageTitle: null, // Used to determine if we should show the unread count in the page title
 
             init() {
                 this.notificationComponentWireId = this.$el.getAttribute('wire:id');
                 this.fetchNotifications();
+                if(config.showTitleCountInPageTitle){
+                    this.showTitleCountInPageTitle = config.showTitleCountInPageTitle;
+                }
                 if(config.polling && config.pollInterval){
                     setInterval(() => {
                         this.fetchNotifications();
@@ -55,6 +61,17 @@ document.addEventListener('alpine:init', () => {
                     .finally(() => {
                         if(!this.areArraysInSync()){
                             this.expandReceivedUnreadNotifications()
+                        }
+
+                        // Modify the page title to show the number of unread notifications
+                        if(this.showTitleCountInPageTitle){
+                            let unreadCount = this.getUnreadCount();
+                            const titleCountStr = `(${unreadCount})`;
+                            if(unreadCount > 0){
+                                document.title = titleCountStr + ' ' +initPageTitle;
+                            }else{
+                                document.title = initPageTitle;
+                            }
                         }
                     })
                     .catch(error => console.error('Error fetching notifications:', error));
@@ -107,6 +124,7 @@ document.addEventListener('alpine:init', () => {
                     this.receivedUnreadNotifications = this.receivedUnreadNotifications.filter(notification => notification !== id);
                     document.getElementById(`unread-notification-${id}`).style.opacity = 0.5;
                     window.Livewire.find(this.notificationComponentWireId).markAsRead(id);
+                    this.expandReceivedUnreadNotifications(); // essential to update the unread count
                 }
             },
 
@@ -114,6 +132,7 @@ document.addEventListener('alpine:init', () => {
                 this.receivedUnreadNotifications = [];
                 window.Livewire.find(this.notificationComponentWireId).call('markAllAsRead', notification);
                 window.Livewire.dispatch('refreshNotifications', {unread_notifications: []});
+                this.expandReceivedUnreadNotifications(); // essential to update the unread count
             },
 
             shouldShowNotification(notification){

@@ -7,6 +7,7 @@
             'id' => $notifiable->getKey(),
             'model' => $notifiable->getMorphClass(),
         ])), // base 64 encoded to ensure that it can be safely passed as a url parameter
+        'showTitleCountInPageTitle' => $showTitleCountInPageTitle,
         'csrfToken' => csrf_token(),
     ])
 )">

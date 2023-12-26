@@ -25,6 +25,8 @@ class Megaphone extends Component
 
     public $showCount;
 
+    public bool $showTitleCountInPageTitle = true;
+
     /**
      * The keys that the annoucements should be have when displayed (serialised from the database and passed to the view)
      * (This is to prevent the entire model being passed to the view)
