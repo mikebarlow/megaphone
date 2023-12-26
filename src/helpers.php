@@ -22,3 +22,10 @@ if (! function_exists('getMegaphoneAdminTypes')) {
         return getMegaphoneTypes();
     }
 }
+
+if(! function_exists('getNotificationInstance')){
+    function getNotificationInstance($className, $params)
+    {
+        return (new $className($params['title'], $params['body']));
+    }
+}

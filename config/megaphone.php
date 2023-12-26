@@ -1,10 +1,11 @@
 <?php
 
 return [
-    /*
-     * Model that has the "Notifiable" and "HasMegaphone" Traits
+
+    /**
+     * The name of the permission to check against when determining if a model can access another model's notifications
      */
-    'model' => \App\Models\User::class,
+    'access-notifications-permission-name' => 'access notifications',
 
     /*
      * Array of all the notification types to display in Megaphone
@@ -46,4 +47,25 @@ return [
      * show a dot instead
      */
     'showCount' => true,
+
+    /**
+     * Default whether to poll for new notifications
+     */
+    'defaultPolling' => true,
+
+    /**
+     * Default how often to poll for new notifications in milliseconds
+     */
+    'defaultPollInterval' => 2000,
+
+    /**
+     * Default Route to handle the AJAX request for polling for new notifications
+     * Cannot be changed dynamically.
+     */
+    'pollRouteUrl' => '/megaphone/poll',
+
+    /**
+     * Default Controller action to handle the AJAX request for polling for new notifications
+     */
+    'pollAction' => \MBarlow\Megaphone\Http\Controllers\MegaphonePollController::class,
 ];

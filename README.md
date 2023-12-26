@@ -254,18 +254,36 @@ The 2-week time limit for old notifications is controlled via the Megaphone conf
 
 ## Changing Notifiable Model
 
-Because notifications can be attached to any model via the `Notifiable` trait, Megaphone too can be attached to any model providing the model also has the `Notifiable` trait attached.
+Because notifications can be attached to any model via the `Notifiable` trait, Megaphone too can be attached to any model providing the model also has the `Notifiable` and `HasMegaphoneTrait` trait attached.
 
-As default, Megaphone assumes you will be attaching it to the standard Laravel User model and when loading notifications, it will attempt to retrieve the ID of the logged in user from the Request object.
-
-If you are wanting to attach Megaphone to a Team model for example, change the `model` attribute of the published megaphone config file, `megaphone.php`.
-
-When rendering the Megaphone component, you will then need to pass in the ID of the notifiable model into the component so Megaphone can load the correct notifications
+When rendering the Megaphone component, you will then need to pass in an instance of the notifiable model into the component so Megaphone can load the correct notifications
 
 ```html
-<livewire:megaphone :notifiableId="$user->team->id"></livewire:megaphone>
+<livewire:megaphone :notifiable="$user->team"></livewire:megaphone>
 ```
 
+Here we are passing in the `team` model from the `$user` model. This means Megaphone will load all notifications attached to the `team` model.
+
+However, note that if the $notifiable model is not the currently authenticated user (which it is by default if it's ), you will need to set the authorization rule for the user to view the notifications. This can be done by setting the rule in a Gate or Policy.
+
+```php
+Gate::define('access-notifications', function ($user, Team $team) {
+    return $user->belongsToTeam($team);
+});
+```
+
+If you are using a Policy, you will also need to register the policy in the `AuthServiceProvider` class.
+
+https://laravel.com/docs/10.x/authorization
+
+You can also set the name of the authorization rule in the Megaphone config file, by default it is `access-notifications`.
+
+```php
+    /*
+     * The authorization rule to use when checking if a user can view, modify, mark as read the notifications for a notifiable model.
+     */
+    'access-notifications-permission-name' => 'access-notifications',
+```
 
 
 ## Testing
