@@ -1,10 +1,10 @@
-<div tabindex="0" aria-label="group icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex flex-shrink-0 items-center justify-center">
+<div tabindex="0" aria-label="group icon" role="img" class="focus:outline-none w-8 h-8 border rounded-full dark:border-gray-700 border-gray-200 flex flex-shrink-0 items-center justify-center">
     {!! $icon ?? '' !!}
 </div>
 <div class="pl-3 w-full">
     <div class="items-center justify-between w-full pr-2">
         <p class="block w-full focus:outline-none text-sm leading-none my-0">
-            <span class="text-indigo-700 font-bold">
+            <span class="text-primary-700 dark:text-gray-300 font-bold">
                 @if(! empty($announcement['link']))
                     <a href="{{ $announcement['link'] }}">
                 @endif
@@ -14,7 +14,7 @@
                 @endif
             </span>
         </p>
-        <p class="block w-full focus:outline-none text-sm leading-none">
+        <p class="block w-full focus:outline-none text-sm text-gray-700 leading-none  dark:text-gray-400">
             {{ $announcement['body'] }}
         </p>
     </div>

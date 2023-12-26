@@ -14,6 +14,7 @@
                 <button x-on:click="isShowingFilterSection = !isShowingFilterSection" x-show="isShowingFilterSection"><x-icon name="bars-4" class="w-6 h-6 text-gray-500" /></button>
             </div>
 
+            <hr class="my-4 dark:border-gray-600 border-gray-300">
             <!----------------- Error Message ----------------->
             <div x-show="error" class="flex items-center justify-between">
                 <hr class="w-full">
@@ -79,8 +80,8 @@
 
             <!---------------- Filter Section ----------------->
             <div x-cloak x-show="isShowingFilterSection">
-                <div class="flex items-center justify-between">
-                    <p tabindex="0" class="focus:outline-none dark:text-gray-400 text-2xl font-semibold leading-6 text-gray-800">Filter</p>
+                <div class="flex items-center justify-between mt-4">
+                    <p tabindex="0" class="focus:outline-none dark:text-gray-400 text-xl font-semibold leading-6 text-gray-800">Filter</p>
                 </div>
 
                 <div class="flex flex-col mt-6">
@@ -90,9 +91,9 @@
                                 Filter by Type
                             </h2>
                             <div class="flex flex-col mt-2">
-                                <div class="dark:hover:bg-slate-900 flex justify-between p-2 border-b border-gray-700"
+                                <div class="dark:hover:bg-slate-900 flex justify-between p-2 border-b hover:bg-slate-100 border-gray-300 dark:border-gray-700"
                                     x-on:click="filterByType(null)"
-                                    x-bind:class=" !filterType ? 'border-l-green-500 dark:bg-slate-900 border-l-4' : ''"
+                                    x-bind:class=" !filterType ? 'border-l-primary-500 dark:border-l-primary-700 bg-slate-200 dark:bg-slate-900 border-l-4' : ''"
                                 >
                                     <span class="dark:text-gray-400 ml-2 text-sm leading-normal">All </span>
                                     @if($this->unread->count())
@@ -106,8 +107,9 @@
                                         // kinda a hack to get the name of the notification class
                                         $name = getNotificationInstance($announcementType->type, $announcements->first())->name();
                                     @endphp
-                                    <div x-bind:class="filterType === @js($type) ? 'dark:bg-slate-900 border-l-green-500 border-l-4' : ''"
-                                        class="dark:hover:bg-slate-900 dark:bg-slate-800 flex justify-between p-2 border-b border-gray-700" x-on:click="filterByType(@js($type))">
+                                    <div x-bind:class="filterType === @js($type) ? 'border-l-primary-500 dark:border-l-primary-700 bg-slate-200 dark:bg-slate-900 border-l-4' : ''"
+                                        class="dark:hover:bg-slate-900 flex justify-between p-2 border-b hover:bg-slate-100 border-gray-300 dark:border-gray-700"
+                                        x-on:click="filterByType(@js($type))">
                                         <span class="dark:text-gray-400 ml-2 text-sm leading-normal">{{ $name  }}</span>
 
                                         <span x-show="getUnreadCount('{{ addcslashes($type, '\\"\'/') }}');"

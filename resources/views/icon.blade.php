@@ -1,6 +1,6 @@
 <button type="button"
         aria-label="show notifications"
-        class="dark:text-slate-400 sm:mt-0 mt-1 font-sans text-gray-900 border-none"
+        class="dark:text-slate-400 sm:mt-0 mt-1 font-sans text-gray-600 border-none"
         @click="open = true"
 >
     <span class="sr-only">Show Notifications</span>
@@ -8,7 +8,7 @@
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
     </svg>
 
-    <div x-show="getUnreadCount() > 0">
+    <div x-cloak x-show="getUnreadCount() > 0">
         @if($showCount)
             <span
             x-text="getUnreadCount()"
