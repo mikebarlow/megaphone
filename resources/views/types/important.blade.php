@@ -6,15 +6,13 @@
     </x-slot:icon>
 
     <x-slot:title>
-        <x-megaphone::notification.title :link="$announcement['link']" class="text-indigo-700 font-bold">
+        <x-megaphone::notification.title :link="$announcement['link']">
             {{ $announcement['title'] }}
         </x-megaphone::notification.title>
     </x-slot:title>
 
     <x-slot:date>
-        <x-megaphone::notification.date
-            :createdAt="$created_at"
-            class="focus:outline-none text-xs leading-3 pt-1 text-gray-500" />
+        <x-megaphone::notification.date :createdAt="$created_at" />
     </x-slot:date>
 
     <x-slot:link>
@@ -22,7 +20,6 @@
             :link="$announcement['link']"
             :newWindow="$announcement['linkNewWindow']"
             :linkText="$announcement['linkText']"
-            class="cursor-pointer no-underline bg-gray-100 text-gray-800 rounded-md border border-gray-300 p-2 hover:bg-gray-300"
         />
     </x-slot:link>
 </x-megaphone::notification.notification>
