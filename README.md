@@ -93,7 +93,7 @@ If you are not using the default user model found at `App\Models\User`, you will
 To get started using megaphone, drop in the Megaphone Livewire component into your template.
 
 ```html
-<livewire:megaphone></livewire:megaphone>
+<livewire:megaphone />
 ```
 
 This will render a Bell Icon where the component has been placed. When clicked a static sidebar will appear on the right of the screen which will show all the existing and any new notifications to the user.

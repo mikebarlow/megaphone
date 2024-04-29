@@ -27,7 +27,16 @@ class Display extends Component
         }
 
         $params = [
-            'announcement' => $this->notification->data,
+            'announcement' => array_merge(
+                [
+                    'title' => '',
+                    'body' => '',
+                    'link' => '',
+                    'linkNewWindow' => false,
+                    'linkText' => 'View',
+                ],
+                $this->notification->data
+            ),
             'read_at' => $this->notification->read_at,
             'created_at' => $this->notification->created_at,
         ];
