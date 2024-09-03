@@ -11,11 +11,11 @@
 
         @if ($unread->count() > 0)
             <div class="border-b pb-2 border-gray-300 text-gray-600 flex justify-between">
-                <h2 tabindex="0" class="focus:outline-none text-sm leading-normal pt-8">
+                <h2 class="focus:outline-none text-sm leading-normal pt-8">
                     Unread Notifications
                 </h2>
 
-                <button tabindex="0" class="focus:outline-none text-sm leading-normal pt-8 hover:text-indigo-700">
+                <button class="focus:outline-none text-sm leading-normal pt-8 hover:text-indigo-700" wire:click="markAllRead()">
                     Mark all as read
                 </button>
             </div>

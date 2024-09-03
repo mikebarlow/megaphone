@@ -59,4 +59,15 @@ class Megaphone extends Component
         $notification->markAsRead();
         $this->loadAnnouncements($this->getNotifiable());
     }
+
+    public function markAllRead()
+    {
+        DatabaseNotification::query()
+            ->where('notifiable_type', config('megaphone.model'))
+            ->where('notifiable_id', $this->notifiableId)
+            ->whereNull('read_at')
+            ->update(['read_at' => now()]);
+
+        $this->loadAnnouncements($this->getNotifiable());
+    }
 }
