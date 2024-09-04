@@ -10,9 +10,15 @@
         </div>
 
         @if ($unread->count() > 0)
-            <h2 tabindex="0" class="focus:outline-none text-sm leading-normal pt-8 border-b pb-2 border-gray-300 text-gray-600">
-                Unread Notifications
-            </h2>
+            <div class="border-b pb-2 border-gray-300 text-gray-600 flex justify-between">
+                <h2 class="focus:outline-none text-sm leading-normal pt-8">
+                    Unread Notifications
+                </h2>
+
+                @if ($unread->count() > 1)
+                    <button class="focus:outline-none text-sm leading-normal pt-8 hover:text-indigo-700" wire:click="markAllRead()">Mark all as read</button>
+                @endif
+            </div>
 
             @foreach ($unread as $announcement)
                 <div class="w-full p-3 mt-4 bg-white rounded flex flex-shrink-0 {{ $announcement->read_at === null ? "drop-shadow shadow border" : ""  }}">
