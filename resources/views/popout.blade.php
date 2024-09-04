@@ -15,9 +15,11 @@
                     Unread Notifications
                 </h2>
 
-                <button class="focus:outline-none text-sm leading-normal pt-8 hover:text-indigo-700" wire:click="markAllRead()">
-                    Mark all as read
-                </button>
+                @if ($unread->count() > 1)
+                    <button class="focus:outline-none text-sm leading-normal pt-8 hover:text-indigo-700" wire:click="markAllRead()">
+                        Mark all as read
+                    </button>
+                @endif
             </div>
 
             @foreach ($unread as $announcement)
