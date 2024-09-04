@@ -100,6 +100,45 @@ it('can mark notification as read', function () {
         ->assertSet('announcements', $user->readNotifications);
 });
 
+it('can mark all notifications as read', function () {
+    $this->actingAs(
+        $user = $this->createTestUser()
+    );
+
+    $this->createTestNotification(
+        $user,
+        \MBarlow\Megaphone\Types\General::class
+    );
+    $this->createTestNotification(
+        $user,
+        \MBarlow\Megaphone\Types\Important::class
+    );
+
+    $this->livewire(Megaphone::class)
+        ->call('markAllRead')
+        ->assertSet('unread', $user->announcements()->get()->whereNull('read_at'))
+        ->assertSet('announcements', $user->readNotifications);
+});
+
+it('shows mark all as read if more than 1 notification', function () {
+    $this->actingAs(
+        $user = $this->createTestUser()
+    );
+
+    $this->createTestNotification(
+        $user,
+        \MBarlow\Megaphone\Types\General::class
+    );
+    $this->createTestNotification(
+        $user,
+        \MBarlow\Megaphone\Types\Important::class
+    );
+
+    $this->livewire(Megaphone::class)
+        ->assertViewIs('megaphone::megaphone')
+        ->assertSeeHtml('<button class="focus:outline-none text-sm leading-normal pt-8 hover:text-indigo-700" wire:click="markAllRead()">Mark all as read</button>');
+});
+
 it('can render the megaphone component with general notification', function () {
     $this->actingAs(
         $user = $this->createTestUser()
