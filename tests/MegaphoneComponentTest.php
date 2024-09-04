@@ -120,6 +120,21 @@ it('can mark all notifications as read', function () {
         ->assertSet('announcements', $user->readNotifications);
 });
 
+it('doesn\'t shows mark all as read if only 1 or less', function () {
+    $this->actingAs(
+        $user = $this->createTestUser()
+    );
+
+    $this->createTestNotification(
+        $user,
+        \MBarlow\Megaphone\Types\General::class
+    );
+
+    $this->livewire(Megaphone::class)
+        ->assertViewIs('megaphone::megaphone')
+        ->assertDontSeeHtml('<button class="focus:outline-none text-sm leading-normal pt-8 hover:text-indigo-700" wire:click="markAllRead()">Mark all as read</button');
+});
+
 it('shows mark all as read if more than 1 notification', function () {
     $this->actingAs(
         $user = $this->createTestUser()
