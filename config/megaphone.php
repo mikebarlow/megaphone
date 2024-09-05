@@ -48,18 +48,17 @@ return [
     'showCount' => true,
 
     /*
-     * "Live Component" - Will auto-update the component when new notifications appear
-     * Possible options: "off", "poll"
-     */
-    'liveComponent' => 'off',
-
-    /*
-     * Live Component "poll" configuration options.
+     * Enable Livewire Poll feature for auto updating.
+     * See livewire docs for poll option descriptions
      * @link https://livewire.laravel.com/docs/wire-poll
      */
     'poll' => [
-        'time' => '15s',
-        'keepAlive' => false,
-        'viewportVisible' => false,
+        'enabled' => false,
+
+        'options' => [
+            'time' => '15s',
+            'keepAlive' => false,
+            'viewportVisible' => false,
+        ],
     ],
 ];
