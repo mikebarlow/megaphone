@@ -50,6 +50,13 @@ class MegaphoneServiceProvider extends ServiceProvider
                 }?>';
             }
         );
+
+        Blade::directive(
+            'megaphoneStyles',
+            function () {
+                return '<link rel="stylesheet" href="{{ asset("vendor/megaphone/css/megaphone.css") }}';
+            }
+        );
     }
 
     protected function bootConsole()

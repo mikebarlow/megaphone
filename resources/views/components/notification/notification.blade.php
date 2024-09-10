@@ -2,11 +2,11 @@
     {{ ! $icon->isEmpty() ? $icon : '' }}
 </div>
 <div class="pl-3 w-full">
-    <div class="items-center justify-between w-full pr-2">
+    <div class="items-center justify-between w-full pr-2 mb-1">
         <p class="block w-full focus:outline-none text-sm leading-none my-0">
             {{ $title }}
         </p>
-        <p class="block w-full focus:outline-none text-sm leading-none">
+        <p class="block w-full focus:outline-none text-sm leading-none mt-1">
             {{ $body }}
         </p>
     </div>

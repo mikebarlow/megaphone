@@ -21,86 +21,106 @@
 .megaphone .relative {
   position: relative;
 }
-.megaphone .top-0 {
-  top: 0px;
-}
 .megaphone .left-0 {
   left: 0px;
+}
+.megaphone .left-1 {
+  left: 0.25rem;
+}
+.megaphone .left-2 {
+  left: 0.5rem;
 }
 .megaphone .right-0 {
   right: 0px;
 }
-.megaphone .z-50 {
-  z-index: 50;
+.megaphone .top-0 {
+  top: 0px;
 }
-.megaphone .z-0 {
-  z-index: 0;
+.megaphone .top-1 {
+  top: 0.25rem;
+}
+.megaphone .top-2 {
+  top: 0.5rem;
 }
 .megaphone .z-30 {
   z-index: 30;
 }
-.megaphone .my-0 {
-  margin-top: 0px;
-  margin-bottom: 0px;
+.megaphone .z-40 {
+  z-index: 40;
+}
+.megaphone .z-50 {
+  z-index: 50;
+}
+.megaphone .-mt-1 {
+  margin-top: -0.25rem;
+}
+.megaphone .mr-2 {
+  margin-right: 0.5rem;
+}
+.megaphone .mr-5 {
+  margin-right: 1.25rem;
+}
+.megaphone .mt-2 {
+  margin-top: 0.5rem;
 }
 .megaphone .mt-4 {
   margin-top: 1rem;
 }
-.megaphone .block {
-  display: block;
-}
 .megaphone .flex {
   display: flex;
+}
+.megaphone .inline-flex {
+  display: inline-flex;
 }
 .megaphone .aspect-square {
   aspect-ratio: 1 / 1;
 }
-.megaphone .h-full {
-  height: 100%;
-}
-.megaphone .h-2\/5 {
-  height: 40%;
-}
 .megaphone .h-12 {
   height: 3rem;
+}
+.megaphone .h-3 {
+  height: 0.75rem;
+}
+.megaphone .h-4 {
+  height: 1rem;
+}
+.megaphone .h-5 {
+  height: 1.25rem;
+}
+.megaphone .h-full {
+  height: 100%;
 }
 .megaphone .h-screen {
   height: 100vh;
 }
-.megaphone .h-6 {
-  height: 1.5rem;
-}
-.megaphone .h-8 {
-  height: 2rem;
-}
-.megaphone .h-4\/5 {
-  height: 80%;
-}
 .megaphone .max-h-fit {
-  max-height: -webkit-fit-content;
   max-height: -moz-fit-content;
   max-height: fit-content;
-}
-.megaphone .w-full {
-  width: 100%;
 }
 .megaphone .w-12 {
   width: 3rem;
 }
-.megaphone .w-6 {
-  width: 1.5rem;
+.megaphone .w-3 {
+  width: 0.75rem;
 }
-.megaphone .w-8 {
-  width: 2rem;
+.megaphone .w-4 {
+  width: 1rem;
 }
-.megaphone .w-4\/5 {
-  width: 80%;
+.megaphone .w-5 {
+  width: 1.25rem;
+}
+.megaphone .w-full {
+  width: 100%;
 }
 .megaphone .flex-shrink-0 {
   flex-shrink: 0;
 }
 .megaphone .translate-x-0 {
   --tw-translate-x: 0px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.megaphone .translate-x-full {
+  --tw-translate-x: 100%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 .megaphone .transform {
@@ -118,11 +138,19 @@
 .megaphone .justify-between {
   justify-content: space-between;
 }
+.megaphone :is(.space-x-1 > :not([hidden]) ~ :not([hidden])) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.25rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.25rem * calc(1 - var(--tw-space-x-reverse)));
+}
 .megaphone .overflow-y-auto {
   overflow-y: auto;
 }
 .megaphone .overflow-x-hidden {
   overflow-x: hidden;
+}
+.megaphone .rounded {
+  border-radius: 0.25rem;
 }
 .megaphone .rounded-full {
   border-radius: 9999px;
@@ -130,120 +158,118 @@
 .megaphone .rounded-md {
   border-radius: 0.375rem;
 }
-.megaphone .rounded {
-  border-radius: 0.25rem;
-}
-.megaphone .border-2 {
-  border-width: 2px;
+.megaphone .rounded-xl {
+  border-radius: 0.75rem;
 }
 .megaphone .border {
   border-width: 1px;
 }
+.megaphone .border-2 {
+  border-width: 2px;
+}
 .megaphone .border-b {
   border-bottom-width: 1px;
-}
-.megaphone .border-gray-300 {
-  --tw-border-opacity: 1;
-  border-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
 .megaphone .border-gray-200 {
   --tw-border-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-border-opacity));
 }
-.megaphone .bg-red-500 {
+.megaphone .border-gray-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+.megaphone .border-neutral-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(229 229 229 / var(--tw-border-opacity));
+}
+.megaphone .bg-black {
   --tw-bg-opacity: 1;
-  background-color: rgb(239 68 68 / var(--tw-bg-opacity));
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 .megaphone .bg-gray-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
+.megaphone .bg-red-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
+}
+.megaphone .bg-red-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(239 68 68 / var(--tw-bg-opacity));
+}
 .megaphone .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
-.megaphone .bg-gray-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
-}
-.megaphone .fill-black {
-  fill: #000;
-}
-.megaphone .fill-blue-600 {
-  fill: #2563eb;
-}
-.megaphone .fill-red-600 {
-  fill: #dc2626;
-}
-.megaphone .fill-green-600 {
-  fill: #16a34a;
-}
-.megaphone .p-8 {
-  padding: 2rem;
+.megaphone .bg-opacity-20 {
+  --tw-bg-opacity: 0.2;
 }
 .megaphone .p-3 {
   padding: 0.75rem;
 }
-.megaphone .p-2 {
-  padding: 0.5rem;
-}
-.megaphone .px-1\.5 {
-  padding-left: 0.375rem;
-  padding-right: 0.375rem;
+.megaphone .p-4 {
+  padding: 1rem;
 }
 .megaphone .px-1 {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
 }
+.megaphone .px-1\.5 {
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+}
+.megaphone .px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
 .megaphone .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
+}
+.megaphone .py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
 }
 .megaphone .py-16 {
   padding-top: 4rem;
   padding-bottom: 4rem;
 }
-.megaphone .pt-3 {
-  padding-top: 0.75rem;
+.megaphone .pb-2 {
+  padding-bottom: 0.5rem;
+}
+.megaphone .pt-2 {
+  padding-top: 0.5rem;
 }
 .megaphone .pt-8 {
   padding-top: 2rem;
 }
-.megaphone .pb-2 {
-  padding-bottom: 0.5rem;
-}
-.megaphone .pl-3 {
-  padding-left: 0.75rem;
-}
-.megaphone .pr-2 {
-  padding-right: 0.5rem;
-}
-.megaphone .pt-1 {
-  padding-top: 0.25rem;
-}
-.megaphone .text-right {
-  text-align: right;
+.megaphone .text-center {
+  text-align: center;
 }
 .megaphone .font-sans {
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
-.megaphone .text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
-}
-.megaphone .text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
+.megaphone .text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 .megaphone .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
+.megaphone .text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+.megaphone .font-medium {
+  font-weight: 500;
+}
 .megaphone .font-semibold {
   font-weight: 600;
 }
-.megaphone .font-bold {
-  font-weight: 700;
+.megaphone .uppercase {
+  text-transform: uppercase;
 }
 .megaphone .leading-5 {
   line-height: 1.25rem;
@@ -254,94 +280,95 @@
 .megaphone .leading-normal {
   line-height: 1.5;
 }
-.megaphone .leading-none {
-  line-height: 1;
-}
-.megaphone .leading-3 {
-  line-height: .75rem;
-}
-.megaphone .text-gray-900 {
+.megaphone .text-gray-500 {
   --tw-text-opacity: 1;
-  color: rgb(17 24 39 / var(--tw-text-opacity));
-}
-.megaphone .text-white {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-.megaphone .text-gray-800 {
-  --tw-text-opacity: 1;
-  color: rgb(31 41 55 / var(--tw-text-opacity));
+  color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 .megaphone .text-gray-600 {
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
 }
-.megaphone .text-gray-500 {
+.megaphone .text-gray-900 {
   --tw-text-opacity: 1;
-  color: rgb(107 114 128 / var(--tw-text-opacity));
+  color: rgb(17 24 39 / var(--tw-text-opacity));
 }
-.megaphone .text-indigo-700 {
+.megaphone .text-neutral-600 {
   --tw-text-opacity: 1;
-  color: rgb(67 56 202 / var(--tw-text-opacity));
+  color: rgb(82 82 82 / var(--tw-text-opacity));
 }
-.megaphone .no-underline {
-  -webkit-text-decoration-line: none;
-          text-decoration-line: none;
+.megaphone .text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.megaphone .opacity-75 {
+  opacity: 0.75;
 }
 .megaphone .shadow {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
-.megaphone .shadow-md {
-  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+.megaphone .outline-none {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 }
 .megaphone .drop-shadow {
   --tw-drop-shadow: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06));
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 .megaphone .transition {
-  transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
-.megaphone .duration-700 {
-  transition-duration: 700ms;
+.megaphone .duration-300 {
+  transition-duration: 300ms;
 }
 .megaphone .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
-.megaphone .hover\:bg-gray-300:hover {
+.megaphone .hover\:bg-neutral-100:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+  background-color: rgb(245 245 245 / var(--tw-bg-opacity));
+}
+.megaphone .hover\:text-indigo-700:hover {
+  --tw-text-opacity: 1;
+  color: rgb(67 56 202 / var(--tw-text-opacity));
 }
 .megaphone .focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
-.megaphone .focus\:ring-2:focus {
-  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes ping {
+    75%, 100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+  .megaphone .motion-safe\:animate-ping {
+    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
 }
-.megaphone .focus\:ring-gray-500:focus {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(107 114 128 / var(--tw-ring-opacity));
+@media (min-width: 640px) {
+  .megaphone .sm\:duration-300 {
+    transition-duration: 300ms;
+  }
 }
-.megaphone .focus\:ring-offset-2:focus {
-  --tw-ring-offset-width: 2px;
+@media (min-width: 1024px) {
+  .megaphone .lg\:w-7\/12 {
+    width: 58.333333%;
+  }
 }
-@media (prefers-color-scheme: dark) {
-  .megaphone .dark\:fill-white {
-    fill: #fff;
+@media (min-width: 1280px) {
+  .megaphone .xl\:w-5\/12 {
+    width: 41.666667%;
   }
 }
 @media (min-width: 1536px) {
-  .megaphone .\32xl\:w-4\/12 {
-    width: 33.333333%;
+  .megaphone .\32xl\:w-3\/12 {
+    width: 25%;
   }
 }

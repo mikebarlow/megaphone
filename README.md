@@ -100,11 +100,15 @@ This will render a Bell Icon where the component has been placed. When clicked a
 
 ### Styling
 
-As default, Megaphone uses TailwindCSS to style the Bell Icon and the notification sidebar. If you are not using Tailwind you may want to include the Megaphone CSS into your template.
+As default, Megaphone uses TailwindCSS to style the Bell Icon and the notification sidebar. If you are not using Tailwind you may want to include the Megaphone CSS into your template. Add the following blade directive to your sites `<head></head>`.
 
 ```html
-<link rel="stylesheet" href="{{ asset('vendor/megaphone/css/megaphone.css') }}">
+@megaphoneStyles
 ```
+
+If you are using TailwindCSS, make sure the Megaphone views are added to any Tailwind config to ensure the correct classes are compiled.
+
+If you wish to recompile Megaphone stylesheet, ensure you have node and npm installed and run `npm install`. To compile the styles then run `npx mix` as per the [Larave Mix Documentation](https://laravel-mix.com/docs/6.0/installation)
 
 ## Sending Notifications
 
