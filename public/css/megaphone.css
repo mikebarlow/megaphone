@@ -24,11 +24,23 @@
 .megaphone .left-0 {
   left: 0px;
 }
+.megaphone .left-1 {
+  left: 0.25rem;
+}
+.megaphone .left-2 {
+  left: 0.5rem;
+}
 .megaphone .right-0 {
   right: 0px;
 }
 .megaphone .top-0 {
   top: 0px;
+}
+.megaphone .top-1 {
+  top: 0.25rem;
+}
+.megaphone .top-2 {
+  top: 0.5rem;
 }
 .megaphone .z-30 {
   z-index: 30;
@@ -38,6 +50,9 @@
 }
 .megaphone .z-50 {
   z-index: 50;
+}
+.megaphone .-mt-1 {
+  margin-top: -0.25rem;
 }
 .megaphone .mr-2 {
   margin-right: 0.5rem;
@@ -54,17 +69,23 @@
 .megaphone .flex {
   display: flex;
 }
+.megaphone .inline-flex {
+  display: inline-flex;
+}
 .megaphone .aspect-square {
   aspect-ratio: 1 / 1;
 }
 .megaphone .h-12 {
   height: 3rem;
 }
-.megaphone .h-2\/5 {
-  height: 40%;
+.megaphone .h-3 {
+  height: 0.75rem;
 }
 .megaphone .h-4 {
   height: 1rem;
+}
+.megaphone .h-5 {
+  height: 1.25rem;
 }
 .megaphone .h-full {
   height: 100%;
@@ -79,8 +100,14 @@
 .megaphone .w-12 {
   width: 3rem;
 }
+.megaphone .w-3 {
+  width: 0.75rem;
+}
 .megaphone .w-4 {
   width: 1rem;
+}
+.megaphone .w-5 {
+  width: 1.25rem;
 }
 .megaphone .w-full {
   width: 100%;
@@ -163,6 +190,10 @@
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
+.megaphone .bg-red-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
+}
 .megaphone .bg-red-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(239 68 68 / var(--tw-bg-opacity));
@@ -207,8 +238,14 @@
 .megaphone .pb-2 {
   padding-bottom: 0.5rem;
 }
+.megaphone .pt-2 {
+  padding-top: 0.5rem;
+}
 .megaphone .pt-8 {
   padding-top: 2rem;
+}
+.megaphone .text-center {
+  text-align: center;
 }
 .megaphone .font-sans {
   font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -263,6 +300,9 @@
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
+.megaphone .opacity-75 {
+  opacity: 0.75;
+}
 .megaphone .shadow {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
@@ -300,6 +340,17 @@
 .megaphone .focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes ping {
+    75%, 100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+  .megaphone .motion-safe\:animate-ping {
+    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
 }
 @media (min-width: 640px) {
   .megaphone .sm\:duration-300 {
