@@ -26,8 +26,6 @@ class Megaphone extends Component
         if (empty($this->notifiableId) && $request->user() !== null) {
             $this->notifiableId = $request->user()->id;
         }
-
-        $this->loadAnnouncements($this->getNotifiable());
         $this->showCount = config('megaphone.showCount', true);
     }
 
@@ -51,13 +49,13 @@ class Megaphone extends Component
 
     public function render()
     {
+        $this->loadAnnouncements($this->getNotifiable());
         return view('megaphone::megaphone');
     }
 
     public function markAsRead(DatabaseNotification $notification)
     {
         $notification->markAsRead();
-        $this->loadAnnouncements($this->getNotifiable());
     }
 
     public function markAllRead()
@@ -67,7 +65,5 @@ class Megaphone extends Component
             ->where('notifiable_id', $this->notifiableId)
             ->whereNull('read_at')
             ->update(['read_at' => now()]);
-
-        $this->loadAnnouncements($this->getNotifiable());
     }
 }

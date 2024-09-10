@@ -46,4 +46,19 @@ return [
      * show a dot instead
      */
     'showCount' => true,
+
+    /*
+     * Enable Livewire Poll feature for auto updating.
+     * See livewire docs for poll option descriptions
+     * @link https://livewire.laravel.com/docs/wire-poll
+     */
+    'poll' => [
+        'enabled' => false,
+
+        'options' => [
+            'time' => '15s',
+            'keepAlive' => false,
+            'viewportVisible' => false,
+        ],
+    ],
 ];
