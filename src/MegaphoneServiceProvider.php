@@ -44,7 +44,7 @@ class MegaphoneServiceProvider extends ServiceProvider
                 if (config("megaphone.poll.enabled", false)) {
                     $poll = "wire:poll";
                     $poll .= (! empty($time = config("megaphone.poll.options.time"))) ? ".$time" : "";
-                    $poll .= (config("megaphone.poll.options.keepAlive", false)) ? ".keepAlive" : "";
+                    $poll .= (config("megaphone.poll.options.keepAlive", false)) ? ".keep-alive" : "";
                     $poll .= (config("megaphone.poll.options.viewportVisible", false)) ? ".visible" : "";
                     echo $poll;
                 }?>';
