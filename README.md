@@ -108,6 +108,8 @@ As default, Megaphone uses TailwindCSS to style the Bell Icon and the notificati
 
 If you are using TailwindCSS, make sure the Megaphone views are added to any Tailwind config to ensure the correct classes are compiled.
 
+If you wish to recompile Megaphone stylesheet, ensure you have node and npm installed and run `npm install`. To compile the styles then run `npx mix` as per the [Larave Mix Documentation](https://laravel-mix.com/docs/6.0/installation)
+
 ## Sending Notifications
 
 As default, Megaphone will only load notifications that have been registered within the Megaphone config file. Notifications shipped with Megaphone will be within `config('megaphone.types')`. This will be merged with the key values of `config('megaphone.customTypes')` to create the list of supported notifications.
