@@ -1,4 +1,24 @@
-<div x-cloak x-show="open" @click.outside="open = false" class="w-full fixed z-50 top-0 right-0 h-full overflow-x-hidden transform translate-x-0 transition ease-in-out duration-700" id="notification">
+<div
+    x-cloak
+    x-show="open"
+    class="fixed w-full h-full top-0 left-0 z-40 bg-black bg-opacity-20"
+    @click="open = false"
+    x-transition.opacity.duration.600ms
+></div>
+
+<div
+    x-cloak
+    x-show="open"
+    x-transition:enter="transform transition ease-in-out duration-300 sm:duration-300"
+    x-transition:enter-start="translate-x-full"
+    x-transition:enter-end="translate-x-0"
+    x-transition:leave="transform transition ease-in-out duration-300 sm:duration-300"
+    x-transition:leave-start="translate-x-0"
+    x-transition:leave-end="translate-x-full"
+    @click.outside="open = false"
+    class="w-11/12 lg:w-4/12 xl:w-3/12 2xl:w-96 fixed z-50 top-0 right-0 h-full overflow-x-hidden transform translate-x-0 transition ease-in-out duration-300"
+    id="notification"
+>
     <div class="fixed w-full h-full top-0 left-0 z-0" @click="open = false"></div>
 
     <div class="2xl:w-4/12 bg-gray-50 shadow-md h-screen overflow-y-auto p-8 pt-3 absolute right-0 z-30">
