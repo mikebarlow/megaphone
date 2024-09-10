@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unrelease] - TBC
+## [2.1.0] - 2024-09-11
 
 * Moved SVG icons into anonymous components for easier reuse / overwriting.[PR#35](https://github.com/mikebarlow/megaphone/pull/35)
 * Reworked notification type templates into components. [PR#35](https://github.com/mikebarlow/megaphone/pull/35)
