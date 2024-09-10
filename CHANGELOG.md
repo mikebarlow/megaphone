@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * Moved SVG icons into anonymous components for easier reuse / overwriting.[PR#35](https://github.com/mikebarlow/megaphone/pull/35)
 * Reworked notification type templates into components. [PR#35](https://github.com/mikebarlow/megaphone/pull/35)
 * Added "mark all as read" feature for unread notifications. [PR#37](https://github.com/mikebarlow/megaphone/pull/37)
+* Added support for `wire:poll` to give the impression of a live component. [PR#38](https://github.com/mikebarlow/megaphone/pull/38)
 
 ## [2.0.0] - 2023-09-11
 
