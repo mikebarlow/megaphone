@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.0] - 2024-09-11
+
+* Moved SVG icons into anonymous components for easier reuse / overwriting.[PR#35](https://github.com/mikebarlow/megaphone/pull/35)
+* Reworked notification type templates into components. [PR#35](https://github.com/mikebarlow/megaphone/pull/35)
+* Added "mark all as read" feature for unread notifications. [PR#37](https://github.com/mikebarlow/megaphone/pull/37)
+* Added support for `wire:poll` to give the impression of a live component. [PR#38](https://github.com/mikebarlow/megaphone/pull/38)
+* Added `@megaphoneStyles` blade directive + improved default styles. [PR#39](https://github.com/mikebarlow/megaphone/pull/39)
+
 ## [2.0.0] - 2023-09-11
 
 * Updated PHP requirement to 8.1 and above (7.4 and 8.0 dropped) [PR#28](https://github.com/mikebarlow/megaphone/pull/28)
