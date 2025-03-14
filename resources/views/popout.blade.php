@@ -52,17 +52,34 @@
                         @endif
                     </div>
                 @endforeach
+            @endif
 
-                @if ($announcements->count() > 0)
+
+            @if ($announcements->count() > 0)
+                <div>
                     <h2 tabindex="0" class="focus:outline-none text-sm leading-normal pt-8 border-b pb-2 border-gray-300 text-gray-600">
                         Previous Notifications
                     </h2>
-                @endif
+
+                    @if(config('megaphone.allow_user_to_delete_read_notifications'))
+                        <button class="focus:outline-none text-sm leading-normal pt-8 hover:text-indigo-700" 
+                            wire:click="deleteAllReadNotification">
+                            Clear Previous Notifications
+                        </button>
+                    @endif
+                </div>
             @endif
 
             @foreach ($announcements as $announcement)
                 <div class="w-full p-3 mt-4 bg-gray-50 rounded flex flex-shrink-0">
                     <x-megaphone::display :notification="$announcement"></x-megaphone::display>
+
+                    @if(config('megaphone.allow_user_to_delete_read_notifications'))
+                        <button role="button" aria-label="Delete" class="absolute top-0 right-0 outline-none px-1 py-1 mt-2 mr-2 space-x-1 cursor-pointer border rounded-md border-neutral-200 text-neutral-600 hover:bg-neutral-100"
+                            x-on:click="$wire.deleteNotification('{{ $announcement->id }}')">
+                            <x-megaphone::icons.close class="w-4 h-4" />
+                        </button>
+                    @endif
                 </div>
             @endforeach
 
