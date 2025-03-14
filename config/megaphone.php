@@ -61,4 +61,6 @@ return [
             'viewportVisible' => false,
         ],
     ],
+
+    'allow_user_to_delete_read_notifications' => true
 ];
