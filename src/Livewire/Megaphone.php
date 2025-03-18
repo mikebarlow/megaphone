@@ -16,7 +16,7 @@ class Megaphone extends Component
 
     public $showCount;
 
-    public $allow;
+    public $allowDelete;
 
     protected $listeners = [
         'notification-link-clicked' => 'markAsRead',
@@ -33,6 +33,11 @@ class Megaphone extends Component
             $this->notifiableId = $request->user()->id;
         }
         $this->showCount = config('megaphone.showCount', true);
+        if (config()->has('megaphone.allow_user_to_delete_read_notifications')) {
+            $this->allowDelete = config('megaphone.allow_user_to_delete_read_notifications');
+        } else {
+            $this->allowDelete = false;
+        }
     }
 
     public function getNotifiable()
