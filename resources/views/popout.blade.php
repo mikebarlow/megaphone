@@ -56,8 +56,8 @@
 
 
             @if ($announcements->count() > 0)
-                <div>
-                    <h2 tabindex="0" class="focus:outline-none text-sm leading-normal pt-8 border-b pb-2 border-gray-300 text-gray-600">
+                <div class="border-b pb-2 border-gray-300 text-gray-600 flex justify-between">
+                    <h2 tabindex="0" class="focus:outline-none text-sm leading-normal pt-8">
                         Previous Notifications
                     </h2>
 
