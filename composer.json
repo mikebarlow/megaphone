@@ -4,6 +4,7 @@
     "keywords": ["Announcements", "Bell Icon", "Notifications", "Livewire", "Laravel"],
     "homepage": "https://github.com/mikebarlow/megaphone",
     "license": "MIT",
+    "version": "2.2.0",
     "authors": [
         {
             "name": "Mike Barlow",
