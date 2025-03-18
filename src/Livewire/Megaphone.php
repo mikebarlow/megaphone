@@ -16,7 +16,7 @@ class Megaphone extends Component
 
     public $showCount;
 
-    public $allow
+    public $allow;
 
     public $rules = [
         'unread' => 'required',
@@ -71,19 +71,19 @@ class Megaphone extends Component
 
     public function deleteNotification(DatabaseNotification $notification)
     {
-        if(config('megaphone.allow_user_to_delete_read_notifications') === true) {
+        if (config('megaphone.allow_user_to_delete_read_notifications') === true) {
             $notification->delete();
         }
     }
 
     public function deleteAllReadNotification()
     {
-        if(config('megaphone.allow_user_to_delete_read_notifications') === true) {
+        if (config('megaphone.allow_user_to_delete_read_notifications') === true) {
             DatabaseNotification::query()
-            ->where('notifiable_type', config('megaphone.model'))
-            ->where('notifiable_id', $this->notifiableId)
-            ->whereNotNull('read_at')
-            ->delete();
+                ->where('notifiable_type', config('megaphone.model'))
+                ->where('notifiable_id', $this->notifiableId)
+                ->whereNotNull('read_at')
+                ->delete();
         }
     }
 }
