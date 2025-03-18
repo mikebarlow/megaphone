@@ -310,13 +310,20 @@ it('can handle invalid megaphone notification type', function () {
 });
 
 
+<<<<<<< HEAD
 it('can handle notification-link-clicked event', function () {
+=======
+it('can clear all previous notifications', function () {
+    config()->set('megaphone.allow_user_to_delete_read_notifications', true);
+
+>>>>>>> f138656 (Fixed styling for delete single notification button)
     $this->actingAs(
         $user = $this->createTestUser()
     );
 
     $this->createTestNotification(
         $user,
+<<<<<<< HEAD
         \MBarlow\Megaphone\Types\NewFeature::class
     );
 
@@ -334,4 +341,28 @@ it('can handle notification-link-clicked event', function () {
         ->dispatch('notification-link-clicked', $notification)
         ->assertSet('unread', $user->announcements()->get()->whereNull('read_at'))
         ->assertSet('announcements', $user->readNotifications);
+=======
+        \MBarlow\Megaphone\Types\General::class
+    );
+
+    $this->livewire(Megaphone::class)
+        ->call('markAllRead')
+        ->assertSet('unread', $user->announcements()->get()->whereNull('read_at'))
+        ->assertSet('announcements', $user->readNotifications);
+
+    // check that the notification has been marked as read
+    $this->assertDatabaseHas('notifications', [
+        'read_at' => now(),
+        'type' => \MBarlow\Megaphone\Types\General::class,
+    ]);
+
+    $this->livewire(Megaphone::class)
+        ->call('deleteAllReadNotification');
+
+    // Check that the notification has been deleted
+    $this->assertDatabaseMissing('notifications', [
+        'read_at' => null,
+        'type' => \MBarlow\Megaphone\Types\General::class,
+    ]);
+>>>>>>> f138656 (Fixed styling for delete single notification button)
 });
