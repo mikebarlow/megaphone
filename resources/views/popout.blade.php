@@ -61,7 +61,7 @@
                         Previous Notifications
                     </h2>
 
-                    @if(config('megaphone.allow_user_to_delete_read_notifications'))
+                    @if($allowDelete)
                         <button class="focus:outline-none text-sm leading-normal pt-8 hover:text-indigo-700" 
                             wire:click="deleteAllReadNotification">
                             Clear Previous Notifications
@@ -74,7 +74,7 @@
                 <div class="w-full p-3 mt-4 bg-gray-50 rounded flex flex-shrink-0">
                     <x-megaphone::display :notification="$announcement"></x-megaphone::display>
 
-                    @if(config('megaphone.allow_user_to_delete_read_notifications'))
+                    @if($allowDelete)
                         <button role="button" aria-label="Delete" class="absolute top-0 right-0 outline-none px-1 py-1 mt-2 mr-2 space-x-1 cursor-pointer border rounded-md border-neutral-200 text-neutral-600 hover:bg-neutral-100"
                             x-on:click="$wire.deleteNotification('{{ $announcement->id }}')">
                             <x-megaphone::icons.close class="w-4 h-4" />
