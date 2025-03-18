@@ -345,6 +345,11 @@ it('can clear all previous notifications', function () {
         \MBarlow\Megaphone\Types\General::class
     );
 
+    $this->createTestNotification(
+        $user,
+        \MBarlow\Megaphone\Types\Important::class
+    );
+
     $this->livewire(Megaphone::class)
         ->call('markAllRead')
         ->assertSet('unread', $user->announcements()->get()->whereNull('read_at'))
@@ -356,6 +361,11 @@ it('can clear all previous notifications', function () {
         'type' => \MBarlow\Megaphone\Types\General::class,
     ]);
 
+    $this->assertDatabaseHas('notifications', [
+        'read_at' => now(),
+        'type' => \MBarlow\Megaphone\Types\Important::class,
+    ]);
+
     $this->livewire(Megaphone::class)
         ->call('deleteAllReadNotification');
 
@@ -363,6 +373,61 @@ it('can clear all previous notifications', function () {
     $this->assertDatabaseMissing('notifications', [
         'read_at' => null,
         'type' => \MBarlow\Megaphone\Types\General::class,
+    ]);
+
+    $this->assertDatabaseMissing('notifications', [
+        'read_at' => null,
+        'type' => \MBarlow\Megaphone\Types\Important::class,
+    ]);
+});
+
+it('can delete single read notification', function () {
+    config()->set('megaphone.allow_user_to_delete_read_notifications', true);
+
+    $this->actingAs(
+        $user = $this->createTestUser()
+    );
+
+    $this->createTestNotification(
+        $user,
+        \MBarlow\Megaphone\Types\General::class
+    );
+
+    $this->createTestNotification(
+        $user,
+        \MBarlow\Megaphone\Types\Important::class
+    );
+
+    $this->livewire(Megaphone::class)
+        ->call('markAllRead')
+        ->assertSet('unread', $user->announcements()->get()->whereNull('read_at'))
+        ->assertSet('announcements', $user->readNotifications);
+
+    // check that the notification has been marked as read
+    $this->assertDatabaseHas('notifications', [
+        'read_at' => now(),
+        'type' => \MBarlow\Megaphone\Types\General::class,
+    ]);
+
+    $this->assertDatabaseHas('notifications', [
+        'read_at' => now(),
+        'type' => \MBarlow\Megaphone\Types\Important::class,
+    ]);
+
+    $notification = $user->readNotifications->first();
+
+    $this->livewire(Megaphone::class)
+        ->call('deleteNotification', $notification);
+
+    // Check that the notification has been deleted
+    $this->assertDatabaseMissing('notifications', [
+        'read_at' => null,
+        'type' => \MBarlow\Megaphone\Types\General::class,
+    ]);
+
+    $this->assertDatabaseHas('notifications', [
+        'read_at' => now(),
+        'type' => \MBarlow\Megaphone\Types\Important::class,
     ]);
 >>>>>>> f138656 (Fixed styling for delete single notification button)
 });
