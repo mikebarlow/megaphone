@@ -431,3 +431,30 @@ it('can delete single read notification', function () {
     ]);
 >>>>>>> f138656 (Fixed styling for delete single notification button)
 });
+
+
+it('can handle notification-link-clicked event', function () {
+    $this->actingAs(
+        $user = $this->createTestUser()
+    );
+
+    $this->createTestNotification(
+        $user,
+        \MBarlow\Megaphone\Types\NewFeature::class
+    );
+
+    $notification = $user->announcements()->first();
+
+    $this->assertDatabaseHas(
+        'notifications',
+        [
+            'id' => $notification->id,
+            'read_at' => null,
+        ]
+    );
+
+    $this->livewire(Megaphone::class)
+        ->dispatch('notification-link-clicked', $notification)
+        ->assertSet('unread', $user->announcements()->get()->whereNull('read_at'))
+        ->assertSet('announcements', $user->readNotifications);
+});
