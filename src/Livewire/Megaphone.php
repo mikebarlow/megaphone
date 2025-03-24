@@ -16,6 +16,10 @@ class Megaphone extends Component
 
     public $showCount;
 
+    protected $listeners = [
+        'notification-link-clicked' => 'markAsRead',
+    ];
+
     public $rules = [
         'unread' => 'required',
         'announcements' => 'required',

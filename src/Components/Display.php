@@ -41,6 +41,8 @@ class Display extends Component
             'created_at' => $this->notification->created_at,
         ];
 
+        $params['announcement']['id'] = $this->notification->id;
+
         $customTypes = config('megaphone.customTypes');
 
         if (! empty($customTypes[$this->notification->type])) {
