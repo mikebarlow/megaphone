@@ -17,6 +17,7 @@
 
     <x-slot:link>
         <x-megaphone::notification.link
+                :notificationID="$announcement['id']"
                 :link="$announcement['link']"
                 :newWindow="$announcement['linkNewWindow']"
                 :linkText="$announcement['linkText']"
