@@ -4,7 +4,8 @@
     </x-slot:icon>
 
     <x-slot:title>
-        <x-megaphone::notification.title :link="$announcement['link']">
+        <x-megaphone::notification.title :link="$announcement['link']"
+            :notificationID="$announcement['id']">
             {{ $announcement['title'] }}
         </x-megaphone::notification.title>
     </x-slot:title>

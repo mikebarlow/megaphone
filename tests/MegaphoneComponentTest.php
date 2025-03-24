@@ -1,6 +1,7 @@
 <?php
 
 use MBarlow\Megaphone\Livewire\Megaphone;
+use Illuminate\Notifications\DatabaseNotification;
 
 it('can render the megaphone component with no logged in user', function () {
     $this->livewire(Megaphone::class)
@@ -44,7 +45,8 @@ it('can render the megaphone component with notification count', function () {
 
 it('can render the megaphone component with notification dot', function () {
     config()->set(
-        'megaphone.showCount', false
+        'megaphone.showCount',
+        false
     );
 
     $this->actingAs(
@@ -305,4 +307,31 @@ it('can handle invalid megaphone notification type', function () {
         <path d="M376 256c0-13.255 10.745-24 24-24s24 10.745 24 24-10.745 24-24 24-24-10.745-24-24zm-40 24c13.255 0 24-10.745 24-24s-10.745-24-24-24-24 10.745-24 24 10.745 24 24 24zm176-128c0 12.296-4.629 23.507-12.232 32 7.603 8.493 12.232 19.704 12.232 32v80c0 12.296-4.629 23.507-12.232 32 7.603 8.493 12.232 19.704 12.232 32v80c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48v-80c0-12.296 4.629-23.507 12.232-32C4.629 319.507 0 308.296 0 296v-80c0-12.296 4.629-23.507 12.232-32C4.629 175.507 0 164.296 0 152V72c0-26.51 21.49-48 48-48h416c26.51 0 48 21.49 48 48v80zm-480 0c0 8.822 7.178 16 16 16h416c8.822 0 16-7.178 16-16V72c0-8.822-7.178-16-16-16H48c-8.822 0-16 7.178-16 16v80zm432 48H48c-8.822 0-16 7.178-16 16v80c0 8.822 7.178 16 16 16h416c8.822 0 16-7.178 16-16v-80c0-8.822-7.178-16-16-16zm16 160c0-8.822-7.178-16-16-16H48c-8.822 0-16 7.178-16 16v80c0 8.822 7.178 16 16 16h416c8.822 0 16-7.178 16-16v-80zm-80-224c13.255 0 24-10.745 24-24s-10.745-24-24-24-24 10.745-24 24 10.745 24 24 24zm-64 0c13.255 0 24-10.745 24-24s-10.745-24-24-24-24 10.745-24 24 10.745 24 24 24zm64 240c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24zm-64 0c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24z"/>
     </svg>
 </div>');
+});
+
+
+it('can handle notification-link-clicked event', function () {
+    $this->actingAs(
+        $user = $this->createTestUser()
+    );
+
+    $this->createTestNotification(
+        $user,
+        \MBarlow\Megaphone\Types\NewFeature::class
+    );
+
+    $notification = $user->announcements()->first();
+
+    $this->assertDatabaseHas(
+        'notifications',
+        [
+            'id' => $notification->id,
+            'read_at' => null,
+        ]
+    );
+
+    $this->livewire(Megaphone::class)
+        ->dispatch('notification-link-clicked', $notification)
+        ->assertSet('unread', $user->announcements()->get()->whereNull('read_at'))
+        ->assertSet('announcements', $user->readNotifications);
 });
