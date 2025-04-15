@@ -314,7 +314,7 @@ it('can handle invalid megaphone notification type', function () {
 it('can handle notification-link-clicked event', function () {
 =======
 it('can clear all previous notifications', function () {
-    config()->set('megaphone.allow_user_to_delete_read_notifications', true);
+    config()->set('megaphone.clearNotifications.userCanDelete', true);
 
 >>>>>>> f138656 (Fixed styling for delete single notification button)
     $this->actingAs(
@@ -382,7 +382,7 @@ it('can clear all previous notifications', function () {
 });
 
 it('can delete single read notification', function () {
-    config()->set('megaphone.allow_user_to_delete_read_notifications', true);
+    config()->set('megaphone.clearNotifications.userCanDelete', true);
 
     $this->actingAs(
         $user = $this->createTestUser()

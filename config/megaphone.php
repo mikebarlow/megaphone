@@ -62,5 +62,8 @@ return [
         ],
     ],
 
-    'allow_user_to_delete_read_notifications' => true
+    // allow_user_to_delete_read_notifications
+    'clearNotifications' => [
+        'userCanDelete' => false,
+    ],
 ];
