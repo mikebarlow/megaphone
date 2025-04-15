@@ -13,11 +13,14 @@ class ClearOldNotifications extends Command
 
     public function handle()
     {
-        now()->sub(config('megaphone.clearAfter'))->toDateTimeString();
+        $clearAfter = config('megaphone.clearNotifications.autoClearAfter');
+        if ($clearAfter === null) {
+            $clearAfter = config('megaphone.clearAfter');
+        }
 
         DatabaseNotification::whereIn('type', getMegaphoneTypes())
             ->whereNotNull('read_at')
-            ->where('created_at', '<', now()->sub(config('megaphone.clearAfter')))
+            ->where('created_at', '<', now()->sub($clearAfter))
             ->delete();
     }
 }
