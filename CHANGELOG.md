@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.2.0] - TBC
+
+* Added 2 new SVG icons for delete and mark as read. [PR#45](https://github.com/mikebarlow/megaphone/pull/45)
+* Added ability to let users delete read notifications before they are auto cleared. [PR#45](https://github.com/mikebarlow/megaphone/pull/45)
+* Moved the config option for "auto clear after" into sub array along with options for deleting notifications. [PR#45](https://github.com/mikebarlow/megaphone/pull/45)
+* Deprecated old config option for "auto clear after", will be removed in a later version. [PR#45](https://github.com/mikebarlow/megaphone/pull/45)
+* Updated console command that clears notifications to look at new config option location, falls back to deprecated old location. [PR#45](https://github.com/mikebarlow/megaphone/pull/45)
+
 ## [2.1.0] - 2024-09-11
 
 * Moved SVG icons into anonymous components for easier reuse / overwriting.[PR#35](https://github.com/mikebarlow/megaphone/pull/35)
