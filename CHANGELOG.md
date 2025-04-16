@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [2.2.0] - TBC
+## [2.2.0] - 2025-04-16
 
 * Added 2 new SVG icons for delete and mark as read. [PR#43](https://github.com/mikebarlow/megaphone/pull/43)
 * Added ability to let users delete read notifications before they are auto cleared. [PR#43](https://github.com/mikebarlow/megaphone/pull/43)
