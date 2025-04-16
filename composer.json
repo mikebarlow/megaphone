@@ -21,7 +21,7 @@
         "pestphp/pest-plugin-livewire": "^2.1",
         "orchestra/testbench": "^8.10",
         "pestphp/pest-plugin-faker": "^2.0",
-        "pestphp/pest": "2.35"
+        "pestphp/pest": "^2.16"
     },
     "autoload": {
         "psr-4": {
