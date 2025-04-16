@@ -35,7 +35,7 @@
                     </h2>
 
                     @if ($unread->count() > 1)
-                        <button class="focus:outline-none text-sm leading-normal pt-8 hover:text-indigo-700" wire:click="markAllRead()">Mark all as read</button>
+                        <button class="focus:outline-none text-sm leading-normal pt-8 hover:text-red-700" wire:click="markAllRead()">Mark all as read</button>
                     @endif
                 </div>
 
@@ -46,8 +46,9 @@
                         @if($announcement->read_at === null)
                             <button role="button" aria-label="Mark as Read" class="absolute top-0 right-0 outline-none px-1 py-1 mt-2 mr-2 space-x-1 cursor-pointer border rounded-md border-neutral-200 text-neutral-600 hover:bg-neutral-100"
                                     x-on:click="$wire.markAsRead('{{ $announcement->id }}')"
+                                    title="Mark as Read"
                             >
-                                <x-megaphone::icons.close class="w-4 h-4" />
+                                <x-megaphone::icons.read class="w-4 h-4" />
                             </button>
                         @endif
                     </div>
@@ -62,22 +63,24 @@
                     </h2>
 
                     @if($allowDelete)
-                        <button class="focus:outline-none text-sm leading-normal pt-8 hover:text-indigo-700" 
+                        <button class="focus:outline-none text-sm leading-normal pt-8 hover:text-red-500"
                             wire:click="deleteAllReadNotification">
-                            Clear Previous Notifications
+                            Clear all
                         </button>
                     @endif
                 </div>
             @endif
 
             @foreach ($announcements as $announcement)
-                <div class="w-full p-3 mt-4 bg-gray-50 rounded flex flex-shrink-0">
+                <div class="w-full p-3 mt-4 bg-gray-50 rounded flex flex-shrink-0 relative">
                     <x-megaphone::display :notification="$announcement"></x-megaphone::display>
 
                     @if($allowDelete)
-                        <button role="button" aria-label="Delete" class="absolute top-0 right-0 outline-none px-1 py-1 mt-2 mr-2 space-x-1 cursor-pointer border rounded-md border-neutral-200 text-neutral-600 hover:bg-neutral-100"
-                            x-on:click="$wire.deleteNotification('{{ $announcement->id }}')">
-                            <x-megaphone::icons.close class="w-4 h-4" />
+                        <button role="button" aria-label="Delete" class="absolute top-0 right-0 outline-none px-1 py-1 mt-2 mr-2 space-x-1 cursor-pointer border rounded-md border-neutral-200 text-neutral-600 hover:bg-neutral-200"
+                            x-on:click="$wire.deleteNotification('{{ $announcement->id }}')"
+                            title="Delete notification"
+                        >
+                            <x-megaphone::icons.delete class="w-4 h-4" />
                         </button>
                     @endif
                 </div>
