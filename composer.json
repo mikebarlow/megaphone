@@ -4,6 +4,7 @@
     "keywords": ["Announcements", "Bell Icon", "Notifications", "Livewire", "Laravel"],
     "homepage": "https://github.com/mikebarlow/megaphone",
     "license": "MIT",
+    "version": "2.2.0",
     "authors": [
         {
             "name": "Mike Barlow",
@@ -20,8 +21,7 @@
         "pestphp/pest-plugin-livewire": "^2.1",
         "orchestra/testbench": "^8.10",
         "pestphp/pest-plugin-faker": "^2.0",
-        "brianium/paratest": "^7.2",
-        "pestphp/pest": "2.16"
+        "pestphp/pest": "^2.16"
     },
     "autoload": {
         "psr-4": {

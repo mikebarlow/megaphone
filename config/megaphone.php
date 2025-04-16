@@ -38,6 +38,8 @@ return [
 
     /*
      * Clear Megaphone notifications older than....
+     * @deprecated
+     * @see "megaphone.clearNotifications.autoClearAfter"
      */
     'clearAfter' => '2 weeks',
 
@@ -60,5 +62,16 @@ return [
             'keepAlive' => false,
             'viewportVisible' => false,
         ],
+    ],
+
+    /*
+     * Options relating to the clearing out of notifications.
+     * Enable the ability for users to delete notifications themselves.
+     * Set the timeframe, after which read notifications will be auto cleared.
+     */
+    'clearNotifications' => [
+        'userCanDelete' => false,
+
+        'autoClearAfter' => '2 weeks',
     ],
 ];

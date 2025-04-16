@@ -16,6 +16,8 @@ class Megaphone extends Component
 
     public $showCount;
 
+    public $allowDelete;
+
     public $rules = [
         'unread' => 'required',
         'announcements' => 'required',
@@ -27,6 +29,11 @@ class Megaphone extends Component
             $this->notifiableId = $request->user()->id;
         }
         $this->showCount = config('megaphone.showCount', true);
+        if (config()->has('megaphone.clearNotifications.userCanDelete')) {
+            $this->allowDelete = config('megaphone.clearNotifications.userCanDelete');
+        } else {
+            $this->allowDelete = false;
+        }
     }
 
     public function getNotifiable()
@@ -65,5 +72,23 @@ class Megaphone extends Component
             ->where('notifiable_id', $this->notifiableId)
             ->whereNull('read_at')
             ->update(['read_at' => now()]);
+    }
+
+    public function deleteNotification(DatabaseNotification $notification)
+    {
+        if (config('megaphone.clearNotifications.userCanDelete') === true) {
+            $notification->delete();
+        }
+    }
+
+    public function deleteAllReadNotification()
+    {
+        if (config('megaphone.clearNotifications.userCanDelete') === true) {
+            DatabaseNotification::query()
+                ->where('notifiable_type', config('megaphone.model'))
+                ->where('notifiable_id', $this->notifiableId)
+                ->whereNotNull('read_at')
+                ->delete();
+        }
     }
 }
