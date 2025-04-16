@@ -21,7 +21,6 @@
         "pestphp/pest-plugin-livewire": "^2.1",
         "orchestra/testbench": "^8.10",
         "pestphp/pest-plugin-faker": "^2.0",
-        "brianium/paratest": "7.8.3",
         "pestphp/pest": "2.35"
     },
     "autoload": {
