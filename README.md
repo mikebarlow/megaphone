@@ -153,13 +153,36 @@ class MyCustomNotification extends BaseAnnouncement
 }
 ```
 
-Next you will need to create the view file for how Megaphone should render that notification. To get you started you can use the base template the General, Important and New Feature notifications uses. So for example, create a new view within `resources/views/megaphone/my-custom-notification.blade.php`.
+Next you will need to create the view file for how Megaphone should render that notification. To get you started copy one of the existing notifications. So for example, create a new view within `resources/views/megaphone/my-custom-notification.blade.php`. Then add the following contents.
 
 ```html 
-@include('megaphone::types.base', ['icon' => 'ICON SVG HERE'])
+<x-megaphone::notification.notification :body="$announcement['body']">
+    <x-slot:icon>
+        <x-megaphone::icons.bells />
+    </x-slot:icon>
+
+    <x-slot:title>
+        <x-megaphone::notification.title :link="$announcement['link']">
+            {{ $announcement['title'] }}
+        </x-megaphone::notification.title>
+    </x-slot:title>
+
+    <x-slot:date>
+        <x-megaphone::notification.date :createdAt="$created_at" />
+    </x-slot:date>
+
+    <x-slot:link>
+        <x-megaphone::notification.link
+                :link="$announcement['link']"
+                :newWindow="$announcement['linkNewWindow']"
+                :linkText="$announcement['linkText']"
+        />
+    </x-slot:link>
+</x-megaphone::notification.notification>
+
 ```
 
-Simply, add a relevant SVG Icon for your notification within the blade include parameters array, and you're good to go. 
+Update the icon defined within `<x-slot:icon>` and that should be it. Extend or modify the other components to change how other parts of your notification looks.
 
 Lastly, you need to tell Megaphone about this notification. Open up the Megaphone config file `config/megaphone.php` and find the `customTypes` attribute. This should be an associative array with the FQDN of the notification class as the key and the path to the view as the value. For example,
 
