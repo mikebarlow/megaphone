@@ -142,7 +142,7 @@ it('doesn\'t shows mark all as read if only 1 or less', function () {
 
     $this->livewire(Megaphone::class)
         ->assertViewIs('megaphone::megaphone')
-        ->assertDontSeeHtml('<button class="focus:outline-none text-sm leading-normal pt-8 hover:text-indigo-700" wire:click="markAllRead()">Mark all as read</button');
+        ->assertDontSeeHtml('<button class="focus:outline-none text-sm leading-normal pt-8 hover:text-red-700" wire:click="markAllRead()">Mark all as read</button');
 });
 
 it('shows mark all as read if more than 1 notification', function () {
@@ -161,7 +161,7 @@ it('shows mark all as read if more than 1 notification', function () {
 
     $this->livewire(Megaphone::class)
         ->assertViewIs('megaphone::megaphone')
-        ->assertSeeHtml('<button class="focus:outline-none text-sm leading-normal pt-8 hover:text-indigo-700" wire:click="markAllRead()">Mark all as read</button');
+        ->assertSeeHtml('<button class="focus:outline-none text-sm leading-normal pt-8 hover:text-red-700" wire:click="markAllRead()">Mark all as read</button');
 });
 
 it('can render the megaphone component with general notification', function () {
