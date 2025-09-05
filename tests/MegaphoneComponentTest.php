@@ -375,6 +375,8 @@ it('can delete single read notification', function () {
         \MBarlow\Megaphone\Types\Important::class
     );
 
+    $now = now(); // fix time to test against
+
     $this->livewire(Megaphone::class)
         ->call('markAllRead')
         ->assertSet('unread', $user->announcements()->get()->whereNull('read_at'))
@@ -382,12 +384,12 @@ it('can delete single read notification', function () {
 
     // check that the notification has been marked as read
     $this->assertDatabaseHas('notifications', [
-        'read_at' => now(),
+        'read_at' => $now,
         'type' => \MBarlow\Megaphone\Types\General::class,
     ]);
 
     $this->assertDatabaseHas('notifications', [
-        'read_at' => now(),
+        'read_at' => $now,
         'type' => \MBarlow\Megaphone\Types\Important::class,
     ]);
 
@@ -403,7 +405,7 @@ it('can delete single read notification', function () {
     ]);
 
     $this->assertDatabaseHas('notifications', [
-        'read_at' => now(),
+        'read_at' => $now,
         'type' => \MBarlow\Megaphone\Types\Important::class,
     ]);
 });
