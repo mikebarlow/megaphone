@@ -309,6 +309,7 @@ it('can handle invalid megaphone notification type', function () {
 </div>');
 });
 
+
 it('can clear all previous notifications', function () {
     config()->set('megaphone.clearNotifications.userCanDelete', true);
 
@@ -406,6 +407,7 @@ it('can delete single read notification', function () {
         'type' => \MBarlow\Megaphone\Types\Important::class,
     ]);
 });
+
 
 it('can handle notification-link-clicked event', function () {
     $this->actingAs(
