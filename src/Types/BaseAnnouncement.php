@@ -40,4 +40,12 @@ class BaseAnnouncement extends Notification
 
         return implode(' ', Str::ucsplit($class));
     }
+
+    /*
+     * This setting is ignored unless links.markAsReadOnClick in the megaphone config is set to true
+     */
+    public static function marksAsReadOnLinkClick(): bool
+    {
+        return true;
+    }
 }
