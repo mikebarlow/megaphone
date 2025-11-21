@@ -4,7 +4,7 @@
     </x-slot:icon>
 
     <x-slot:title>
-        <x-megaphone::notification.title :link="$announcement['link']">
+        <x-megaphone::notification.title :announcement="$announcement" :markAsReadOnClick="$markAsReadOnClick">
             {{ $announcement['title'] }}
         </x-megaphone::notification.title>
     </x-slot:title>
@@ -14,10 +14,6 @@
     </x-slot:date>
 
     <x-slot:link>
-        <x-megaphone::notification.link
-            :link="$announcement['link']"
-            :newWindow="$announcement['linkNewWindow']"
-            :linkText="$announcement['linkText']"
-        />
+        <x-megaphone::notification.link :announcement="$announcement" :markAsReadOnClick="$markAsReadOnClick" />
     </x-slot:link>
 </x-megaphone::notification.notification>
