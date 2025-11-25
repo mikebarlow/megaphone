@@ -73,6 +73,8 @@ return [
         'userCanDelete' => false,
 
         'autoClearAfter' => '2 weeks',
+
+        'onlyClearReadNotifications' => true,
     ],
 
     /*

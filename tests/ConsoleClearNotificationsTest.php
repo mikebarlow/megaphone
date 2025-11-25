@@ -57,3 +57,23 @@ it('wont clear unread notification', function () {
 
     $this->assertDatabaseCount('notifications', 1);
 });
+
+it('will clear unread notification if the setting to only clear read notifications is disabled', function () {
+    config()->set('megaphone.clearNotifications.onlyClearReadNotifications', false);
+
+    $user = $this->createTestUser();
+
+    $this->createTestNotification(
+        $user,
+        \MBarlow\Megaphone\Types\General::class
+    );
+    $this->assertDatabaseCount('notifications', 1);
+
+    Carbon::setTestNow(
+        Carbon::now()->addWeeks(3)
+    );
+
+    $this->artisan('megaphone:clear-announcements')->assertSuccessful();
+
+    $this->assertDatabaseCount('notifications', 0);
+});
