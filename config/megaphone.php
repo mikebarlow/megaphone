@@ -73,5 +73,22 @@ return [
         'userCanDelete' => false,
 
         'autoClearAfter' => '2 weeks',
+
+        'onlyClearReadNotifications' => true,
+    ],
+
+    /*
+     * Options relating to the handling of links in notifications
+     */
+    'links' => [
+        /*
+         * Set to true to mark a notification as read when it's link (if set) is clicked.
+         * Set to false to leave the notification unread so a user must manually mark it as read.
+         * false matches pre 2.3.0 behavior
+         *
+         * When set to true, you can further customize this on a per-notification type basis.
+         * This allows you to have regular notifications marked as read automatically but important ones not.
+         */
+        'markAsReadOnClick' => false,
     ],
 ];

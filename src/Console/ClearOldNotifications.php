@@ -19,7 +19,12 @@ class ClearOldNotifications extends Command
         }
 
         DatabaseNotification::whereIn('type', getMegaphoneTypes())
-            ->whereNotNull('read_at')
+            ->when(
+                config('megaphone.clearNotifications.onlyClearReadNotifications', true),
+                function ($query) {
+                    $query->whereNotNull('read_at');
+                }
+            )
             ->where('created_at', '<', now()->sub($clearAfter))
             ->delete();
     }

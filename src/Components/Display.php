@@ -4,6 +4,7 @@ namespace MBarlow\Megaphone\Components;
 
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\View\Component;
+use MBarlow\Megaphone\Types\BaseAnnouncement;
 use MBarlow\Megaphone\Types\General;
 use MBarlow\Megaphone\Types\Important;
 use MBarlow\Megaphone\Types\NewFeature;
@@ -26,6 +27,9 @@ class Display extends Component
             return '';
         }
 
+        /** @var BaseAnnouncement $type */
+        $type = $this->notification->type;
+
         $params = [
             'announcement' => array_merge(
                 [
@@ -39,6 +43,12 @@ class Display extends Component
             ),
             'read_at' => $this->notification->read_at,
             'created_at' => $this->notification->created_at,
+            'markAsReadOnClick' => [
+                'id' => $this->notification->id,
+                'active' => $this->notification->read_at === null &&
+                    config('megaphone.links.markAsReadOnClick', false) &&
+                    $type::marksAsReadOnLinkClick(),
+            ],
         ];
 
         $customTypes = config('megaphone.customTypes');

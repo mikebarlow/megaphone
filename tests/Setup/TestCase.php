@@ -43,7 +43,7 @@ class TestCase extends BaseTestCase
         );
         $user->notify($notification);
 
-        return $notification;
+        return $user->notifications()->latest()->first();
     }
 
     protected function bellSvgIcon(): string

@@ -247,6 +247,25 @@ it('can render the megaphone component with custom notification', function () {
 </div>');
 });
 
+it('can render the megaphone component with mark as read enabled on links', function () {
+    config()->set('megaphone.links.markAsReadOnClick', true);
+
+    $this->actingAs(
+        $user = $this->createTestUser()
+    );
+
+    $notification = $this->createTestNotification(
+        $user,
+        \MBarlow\Megaphone\Types\General::class
+    );
+
+    $this->livewire(Megaphone::class)
+        ->assertViewIs('megaphone::megaphone')
+        ->assertSeeHtml('<a href="' . $notification->data['link'] . '" class="cursor-pointer no-underline bg-gray-100 text-gray-800 rounded-md border border-gray-300 p-2 hover:bg-gray-300" target="_self" wire:click="markAsRead(\'' . $notification->id . '\')">
+    View
+</a>');
+});
+
 it('can handle custom megaphone notification types with no template set', function () {
     config()->set(
         'megaphone.customTypes',
@@ -308,9 +327,10 @@ it('can handle invalid megaphone notification type', function () {
 </div>');
 });
 
-
 it('can clear all previous notifications', function () {
     config()->set('megaphone.clearNotifications.userCanDelete', true);
+
+    Date::setTestNow($now = Date::now());
 
     $this->actingAs(
         $user = $this->createTestUser()
@@ -355,10 +375,14 @@ it('can clear all previous notifications', function () {
         'read_at' => null,
         'type' => \MBarlow\Megaphone\Types\Important::class,
     ]);
+
+    Date::setTestNow();
 });
 
 it('can delete single read notification', function () {
     config()->set('megaphone.clearNotifications.userCanDelete', true);
+
+    Date::setTestNow($now = Date::now());
 
     $this->actingAs(
         $user = $this->createTestUser()
@@ -405,4 +429,6 @@ it('can delete single read notification', function () {
         'read_at' => now(),
         'type' => \MBarlow\Megaphone\Types\Important::class,
     ]);
+
+    Date::setTestNow();
 });
