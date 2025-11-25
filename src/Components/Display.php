@@ -45,7 +45,9 @@ class Display extends Component
             'created_at' => $this->notification->created_at,
             'markAsReadOnClick' => [
                 'id' => $this->notification->id,
-                'active' => config('megaphone.links.markAsReadOnClick', false) && $type::marksAsReadOnLinkClick(),
+                'active' => $this->notification->read_at === null &&
+                    config('megaphone.links.markAsReadOnClick', false) &&
+                    $type::marksAsReadOnLinkClick(),
             ],
         ];
 
