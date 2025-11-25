@@ -3,9 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [2.3.0] - TBC
+## [2.3.0] - 2025-11-25
 
 * Added a new feature for marking notifications as read when clicking a read more link. [PR#48](https://github.com/mikebarlow/megaphone/pull/48)
+* Added a new config option to the console command to clear out all old notifications regardless of read status. [PR#48](https://github.com/mikebarlow/megaphone/pull/48)
 
 ## [2.2.0] - 2025-04-16
 
