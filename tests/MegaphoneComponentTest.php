@@ -330,6 +330,8 @@ it('can handle invalid megaphone notification type', function () {
 it('can clear all previous notifications', function () {
     config()->set('megaphone.clearNotifications.userCanDelete', true);
 
+    Date::setTestNow($now = Date::now());
+
     $this->actingAs(
         $user = $this->createTestUser()
     );
@@ -373,10 +375,14 @@ it('can clear all previous notifications', function () {
         'read_at' => null,
         'type' => \MBarlow\Megaphone\Types\Important::class,
     ]);
+
+    Date::setTestNow();
 });
 
 it('can delete single read notification', function () {
     config()->set('megaphone.clearNotifications.userCanDelete', true);
+
+    Date::setTestNow($now = Date::now());
 
     $this->actingAs(
         $user = $this->createTestUser()
@@ -423,4 +429,6 @@ it('can delete single read notification', function () {
         'read_at' => now(),
         'type' => \MBarlow\Megaphone\Types\Important::class,
     ]);
+
+    Date::setTestNow();
 });
