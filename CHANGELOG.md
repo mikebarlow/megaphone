@@ -5,7 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [3.0.0] - 2026-04-14
 
-* Updated to Livewire 4
+* Updated to Livewire 4 [PR#50](https://github.com/mikebarlow/megaphone/pull/50)
 * Bumped minimum PHP requirement to 8.2
 * Updated test suite to use `Livewire::test()` instead of `$this->livewire()`
 * Updated Livewire component registration to use `Livewire::addNamespace()`
