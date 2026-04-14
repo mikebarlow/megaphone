@@ -30,6 +30,24 @@ Update your Megaphone requirement to 3.* by running the following command in you
     composer require mbarlow/megaphone "^3.0"
 ```
 
+### Livewire component tags
+
+The notifications and admin Livewire components are now referenced with explicit namespaced tags. Update any Blade templates that still use the 2.x tags.
+
+**2.x:**
+
+```html
+<livewire:megaphone></livewire:megaphone>
+<livewire:megaphone-admin></livewire:megaphone-admin>
+```
+
+**3.x:**
+
+```html
+<livewire:megaphone::notifications />
+<livewire:megaphone::admin></livewire:megaphone::admin>
+```
+
 ### Template Changes
 
 If you are using the Admin component and are running with the Megaphone views published to your resources folder, you may wish to make these manual changes.
