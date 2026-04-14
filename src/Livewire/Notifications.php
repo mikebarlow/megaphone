@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Notifications\DatabaseNotification;
 use Livewire\Component;
 
-class Megaphone extends Component
+class Notifications extends Component
 {
     public $notifiableId;
 
@@ -57,7 +57,7 @@ class Megaphone extends Component
     public function render()
     {
         $this->loadAnnouncements($this->getNotifiable());
-        return view('megaphone::megaphone');
+        return view('megaphone::notifications');
     }
 
     public function markAsRead(DatabaseNotification $notification)

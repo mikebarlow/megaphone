@@ -6,7 +6,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
-class MegaphoneAdmin extends Component
+class Admin extends Component
 {
     public string $type = '';
 

@@ -6,8 +6,6 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use MBarlow\Megaphone\Console\ClearOldNotifications;
-use MBarlow\Megaphone\Livewire\Megaphone;
-use MBarlow\Megaphone\Livewire\MegaphoneAdmin;
 
 class MegaphoneServiceProvider extends ServiceProvider
 {
@@ -70,8 +68,12 @@ class MegaphoneServiceProvider extends ServiceProvider
 
     protected function bootLivewireComponents()
     {
-        Livewire::component('megaphone', Megaphone::class);
-        Livewire::component('megaphone-admin', MegaphoneAdmin::class);
+        Livewire::addNamespace(
+            namespace: 'megaphone',
+            classNamespace: 'MBarlow\\Megaphone\\Livewire',
+            classPath: __DIR__ . '/Livewire',
+            classViewPath: __DIR__ . '/../resources/views',
+        );
     }
 
     protected function bootPublishes()

@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.0.0] - 2026-04-14
+
+* Updated to Livewire 4
+* Bumped minimum PHP requirement to 8.2
+* Updated test suite to use `Livewire::test()` instead of `$this->livewire()`
+* Updated Livewire component registration to use `Livewire::addNamespace()`
+* Updated `wire:model` directives for Livewire 4 compatibility (`wire:model.live` → `wire:model`, `wire:model.blur` → `wire:model.live.blur`)
+* Updated dev dependencies (Pest 3, Testbench 9|10)
+* Removed `pestphp/pest-plugin-livewire` dependency
+
 ## [2.3.0] - 2025-11-25
 
 * Added a new feature for marking notifications as read when clicking a read more link. [PR#48](https://github.com/mikebarlow/megaphone/pull/48)

@@ -19,20 +19,16 @@ Before using Megaphone, a demo is available for you to view and try the Bell Ico
 
 [View the Megaphone Demo](https://megaphone.mikebarlow.co.uk)
 
-## Upgrade from 1.x
+## Upgrade from 2.x
 
-Megaphone has been updated to support Livewire 3. This also means PHP requirements have been updated to match the requirements of Livewire 3 which means you need to be running PHP 8.1 or above (PHP 7.4 and 8.0 are no longer supported).
+Megaphone has been updated to support Livewire 4. This also means PHP requirements have been updated to match the requirements of Livewire 4 which means you need to be running PHP 8.2 or above (PHP 8.1 is no longer supported).
 Then make sure you follow the [Livewire upgrade guide](https://livewire.laravel.com/docs/upgrading).
 
-Update your Megaphone requirement to 2.* by running the following command in your terminal.
+Update your Megaphone requirement to 3.* by running the following command in your terminal.
 
 ```bash
-    composer require mbarlow/megaphone "^2.0"
+    composer require mbarlow/megaphone "^3.0"
 ```
-
-### AlpineJS
-
-If you previously included AlpineJS specifically for Megaphone then you can now remove that from your JS include because it is now bundled with Livewire.
 
 ### Template Changes
 
@@ -40,13 +36,20 @@ If you are using the Admin component and are running with the Megaphone views pu
 
 Changes are all to `create-announcement.blade.php` which, if published, should be found at `resources/views/vendor/megaphone/admin/create-announcement.blade.php`.
 
-Find `wire:model="type"` and replace it with `wire:model.live="type"`.
+Find `wire:model.live="type"` and replace it with `wire:model="type"`.
 
-Find all instances of `wire:model.lazy` and replace it with `wire:model.blur`.
+Find all instances of `wire:model.blur` and replace it with `wire:model.live.blur`.
+
+## Upgrade from 1.x
+
+Megaphone 2.x supported Livewire 3 with a minimum PHP requirement of 8.1. If you are upgrading from 1.x, please refer to the [1.x branch](https://github.com/mikebarlow/megaphone/tree/1.x) for the 2.x upgrade instructions, then follow the 2.x to 3.x upgrade guide above.
+
+For the Livewire 2 version of Megaphone, see the [1.x branch](https://github.com/mikebarlow/megaphone/tree/1.x).
 
 ## Installation
 
-For the Livewire 2 version of Megaphone, see the 1.x versions of Megaphone and the [1.x branch](https://github.com/mikebarlow/megaphone/tree/1.x).
+For the Livewire 2 version of Megaphone, see the [1.x branch](https://github.com/mikebarlow/megaphone/tree/1.x).
+For the Livewire 3 version of Megaphone, see the [2.x branch](https://github.com/mikebarlow/megaphone/tree/2.x).
 
 Simply require the package via composer into your Laravel app.
 
@@ -54,7 +57,7 @@ Simply require the package via composer into your Laravel app.
 
 If you aren't already using Laravel Livewire in your app, Megaphone should include the package via its dependency. Once composer has finished installing, make sure you run the [Livewire installation steps](https://livewire.laravel.com/docs/installation).
 
-Once Livewire has been installed, if you haven't already, ensure the [Laravel Database Notifications have been installed](https://laravel.com/docs/10.x/notifications#database-prerequisites) into your app.
+Once Livewire has been installed, if you haven't already, ensure the [Laravel Database Notifications have been installed](https://laravel.com/docs/13.x/notifications#database-prerequisites) into your app.
 
 ```bash
 php artisan notifications:table
@@ -62,7 +65,7 @@ php artisan notifications:table
 php artisan migrate 
 ```
 
-This should create database table used to house your notifications. Next, make sure your User model (or relevant alternative model) has the notifiable trait added as mentioned in the [Laravel Documentation](https://laravel.com/docs/10.x/notifications#using-the-notifiable-trait) and also add the `HasMegaphone` trait provided by Megaphone.
+This should create database table used to house your notifications. Next, make sure your User model (or relevant alternative model) has the notifiable trait added as mentioned in the [Laravel Documentation](https://laravel.com/docs/13.x/notifications#using-the-notifiable-trait) and also add the `HasMegaphone` trait provided by Megaphone.
 
 ```php
 <?php
@@ -90,10 +93,10 @@ If you are not using the default user model found at `App\Models\User`, you will
 
 ## Using Megaphone
 
-To get started using megaphone, drop in the Megaphone Livewire component into your template.
+To get started using megaphone, drop in the Notifications Livewire component into your template.
 
 ```html
-<livewire:megaphone />
+<livewire:megaphone::notifications />
 ```
 
 This will render a Bell Icon where the component has been placed. When clicked a static sidebar will appear on the right of the screen which will show all the existing and any new notifications to the user.
@@ -127,7 +130,7 @@ $notification = new \MBarlow\Megaphone\Types\Important(
 );
 ```
 
-Now, simply notify the required user of the notification as per the [Laravel Documentation](https://laravel.com/docs/10.x/notifications#using-the-notifiable-trait).
+Now, simply notify the required user of the notification as per the [Laravel Documentation](https://laravel.com/docs/13.x/notifications#using-the-notifiable-trait).
 
 ```php 
 $user = \App\Models\User::find(1);
@@ -221,7 +224,7 @@ You may want to let users know that some downtime is expected for maintenance or
 To use the component simply create a new page within your admin area, or create a password-protected page within your application that only you as the application owners can access and drop in this Livewire component.
 
 ```html 
-<livewire:megaphone-admin></livewire:megaphone-admin>
+<livewire:megaphone::admin></livewire:megaphone::admin>
 ```
 
 Visit your page and you will be presented with a form, to first select the notification type and then fill out the title, body, link and link text. Once you have filled everything out, hit send to push the notification out to all users.
@@ -287,10 +290,10 @@ As default, Megaphone assumes you will be attaching it to the standard Laravel U
 
 If you are wanting to attach Megaphone to a Team model for example, change the `model` attribute of the published megaphone config file, `megaphone.php`.
 
-When rendering the Megaphone component, you will then need to pass in the ID of the notifiable model into the component so Megaphone can load the correct notifications
+When rendering the Notifications component, you will then need to pass in the ID of the notifiable model into the component so Megaphone can load the correct notifications
 
 ```html
-<livewire:megaphone :notifiableId="$user->team->id"></livewire:megaphone>
+<livewire:megaphone::notifications :notifiableId="$user->team->id"></livewire:megaphone::notifications>
 ```
 
 
